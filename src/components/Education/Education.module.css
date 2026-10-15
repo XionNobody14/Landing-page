@@ -1,0 +1,173 @@
+.educationSection {
+  padding: 60px 0 80px 0;
+  position: relative;
+}
+
+.educationGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.degreesColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.degreeCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+
+.degreeCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-wood);
+}
+
+.degreeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.degreeTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.periodBadge {
+  font-size: 0.775rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--color-wood-dark);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.institution {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-wood-dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.statusWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(143, 158, 139, 0.16);
+  border: 1px solid var(--color-accent-sage);
+  color: var(--color-text-main);
+}
+
+.statusNote {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.degreeHighlight {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+/* Languages Column */
+.languagesCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.langCardTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.langList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.langItem {
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.langItem:hover {
+  border-color: var(--color-wood);
+  background: #DFD9D0;
+}
+
+.langHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.langName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.langProficiency {
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(143, 158, 139, 0.18);
+  border: 1px solid var(--color-accent-sage);
+  color: var(--color-text-main);
+}
+
+.langDescription {
+  font-size: 0.825rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .educationGrid {
+    grid-template-columns: 1fr;
+  }
+}
