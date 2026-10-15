@@ -206,7 +206,16 @@ export const translations = {
         { name: "GitHub", url: "https://github.com/andres-chavez-placeholder", handle: "github.com/andres-chavez" }
       ],
       cardTitle: "Envíame un mensaje",
-      cardNote: "Listo para aportar valor en puestos de Desarrollo de Software, Automatización de Procesos o Análisis Técnico de Sistemas."
+      cardNote: "Listo para aportar valor en puestos de Desarrollo de Software, Automatización de Procesos o Análisis Técnico de Sistemas.",
+      modal: {
+        title: "Descargar Currículum",
+        subtitle: "Selecciona el idioma del documento:",
+        optionEs: "Español (ES)",
+        optionEsDetail: "PDF - 1 página",
+        optionEn: "Inglés (EN)",
+        optionEnDetail: "PDF - 1 página",
+        close: "Cerrar"
+      }
     },
     footer: {
       rights: "Todos los derechos reservados.",
@@ -422,7 +431,16 @@ export const translations = {
         { name: "GitHub", url: "https://github.com/andres-chavez-placeholder", handle: "github.com/andres-chavez" }
       ],
       cardTitle: "Send a Message",
-      cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Technical Systems roles."
+      cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Technical Systems roles.",
+      modal: {
+        title: "Download Resume",
+        subtitle: "Select document language:",
+        optionEs: "Spanish (ES)",
+        optionEsDetail: "PDF - 1 page",
+        optionEn: "English (EN)",
+        optionEnDetail: "PDF - 1 page",
+        close: "Close"
+      }
     },
     footer: {
       rights: "All rights reserved.",

@@ -275,3 +275,190 @@
     gap: 10px;
   }
 }
+
+/* ==========================================================================
+   CV Download Modal (Soft Japandi)
+   ========================================================================== */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 49, 46, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.modalContainer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  box-shadow: 0 20px 48px rgba(45, 49, 46, 0.14), 0 4px 16px rgba(45, 49, 46, 0.06);
+  width: 100%;
+  max-width: 520px;
+  padding: 32px 28px;
+  position: relative;
+  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.modalHeadingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.modalTitle {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.modalSubtitle {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.modalCloseBtn {
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.modalCloseBtn:hover {
+  background: #DFD9D0;
+  border-color: var(--color-wood);
+  color: var(--color-text-main);
+  transform: scale(1.05);
+}
+
+.modalGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.downloadCard {
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.downloadCard:hover {
+  background: #EAE5DD;
+  border-color: var(--color-wood);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(140, 115, 85, 0.12);
+}
+
+.cardIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(143, 158, 139, 0.16);
+  border: 1px solid var(--color-accent-sage);
+  color: var(--color-wood-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  transition: transform 0.2s ease;
+}
+
+.downloadCard:hover .cardIconBox {
+  transform: scale(1.06);
+}
+
+.cardLangTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 4px;
+}
+
+.cardDetail {
+  font-size: 0.775rem;
+  color: var(--color-text-muted);
+  margin-bottom: 14px;
+}
+
+.cardActionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--color-wood-dark);
+  background: rgba(194, 166, 140, 0.18);
+  border: 1px solid var(--color-wood);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.downloadCard:hover .cardActionBadge {
+  background: var(--color-wood-dark);
+  border-color: var(--color-wood-dark);
+  color: #FFFFFF;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 540px) {
+  .modalContainer {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .modalGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
