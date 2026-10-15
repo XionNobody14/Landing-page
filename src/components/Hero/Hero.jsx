@@ -5,16 +5,13 @@ import styles from './Hero.module.css';
 const Hero = ({ setActiveTab }) => {
   const { t } = useLanguage();
 
-  const handleScrollTo = (e, targetId) => {
+  const handleScrollToMetrics = (e) => {
     e.preventDefault();
-    if (setActiveTab) {
-      setActiveTab(targetId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-    const element = document.getElementById(targetId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const metricsElement = document.getElementById('metrics');
+    if (metricsElement) {
+      metricsElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   };
 
@@ -64,9 +61,9 @@ const Hero = ({ setActiveTab }) => {
           {/* Action CTAs */}
           <div className={styles.ctaContainer}>
             <a
-              href="#experience"
+              href="#metrics"
               className={styles.primaryCta}
-              onClick={(e) => handleScrollTo(e, 'experience')}
+              onClick={handleScrollToMetrics}
             >
               <span>{t.hero.ctaExperience}</span>
               <svg
