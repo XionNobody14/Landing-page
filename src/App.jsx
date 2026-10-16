@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
@@ -28,6 +29,7 @@ function App() {
           {activeTab === 'contact' && <Contact />}
         </main>
       </div>
+      <Analytics />
     </LanguageProvider>
   );
 }
