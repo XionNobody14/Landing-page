@@ -11,7 +11,12 @@ export const translations = {
         { id: "contact", label: "Contacto" }
       ],
       ctaContact: "Hablemos",
-      menuAria: "Alternar menú de navegación"
+      menuAria: "Alternar menú de navegación",
+      themeToggleAria: "Cambiar tema (Claro / Oscuro)",
+      themeLight: "Modo Claro",
+      themeDark: "Modo Oscuro",
+      themeLightShort: "Claro",
+      themeDarkShort: "Oscuro"
     },
     hero: {
       badge: "Disponible para nuevos retos profesionales",
@@ -103,45 +108,53 @@ export const translations = {
     skills: {
       sectionTag: "Competencias Técnicas",
       sectionTitle: "Stack Tecnológico & Habilidades",
-      sectionSubtitle: "Herramientas organizadas por nivel de experiencia y aplicación práctica",
-      filterAll: "Todas las Habilidades",
+      sectionSubtitle: "Filtra por dominio o toca cada habilidad para ver su aplicación real",
+      filterAll: "Todas",
+      filters: [
+        { id: "all", label: "Todas" },
+        { id: "backend_data", label: "Backend & Datos" },
+        { id: "automation_ai", label: "Automatización & IA" },
+        { id: "frontend_core", label: "Frontend & Core" }
+      ],
+      tapHint: "Toca para ver aplicación real",
+      closeTooltip: "Cerrar",
       categories: [
         {
-          id: "advanced",
-          title: "Nivel Avanzado",
-          description: "Dominio profundo, arquitectura de datos y aplicación diaria en entornos corporativos",
+          id: "backend_data",
+          title: "Backend & Datos",
+          description: "Diseño de APIs, arquitectura relacional y NoSQL, y persistencia de alto rendimiento",
           skills: [
-            { name: "Python", level: "Avanzado", highlight: true },
-            { name: "R", level: "Avanzado", highlight: true },
-            { name: "SQL", level: "Avanzado", highlight: true },
-            { name: "LLMs y Agentes de IA aplicados", level: "Avanzado", highlight: true },
-            { name: "Power Platform", level: "Avanzado", highlight: true },
-            { name: "HTML", level: "Avanzado", highlight: false },
-            { name: "CSS", level: "Avanzado", highlight: false },
-            { name: "Microsoft Excel", level: "Avanzado", highlight: true }
+            { name: "Python", level: "Avanzado", highlight: true, description: "Desarrollo backend, scripts de automatización y canalizaciones de análisis de datos." },
+            { name: "R", level: "Avanzado", highlight: true, description: "Análisis estadístico, modelado y generación de reportes analíticos automatizados." },
+            { name: "SQL", level: "Avanzado", highlight: true, description: "Diseño y optimización de consultas relacionales en entornos empresariales de alta demanda." },
+            { name: "C#", level: "Intermedio", highlight: false, description: "Desarrollo de servicios robustos y lógica orientada a objetos en ecosistemas .NET." },
+            { name: "Java", level: "Intermedio", highlight: false, description: "Programación orientada a objetos, estructuras de datos y aplicaciones empresariales." },
+            { name: "MongoDB", level: "Intermedio", highlight: true, description: "Modelado de datos NoSQL, diseño de colecciones y consultas de agregación." },
+            { name: "Express.js", level: "Intermedio", highlight: true, description: "Creación de REST APIs seguras, enrutamiento modular y middlewares en Node.js." },
+            { name: "Node.js", level: "Intermedio", highlight: true, description: "Entorno de ejecución asíncrono para servicios backend y APIs escalables." }
           ]
         },
         {
-          id: "intermediate",
-          title: "Nivel Intermedio",
-          description: "Desarrollo de servicios, aplicaciones completas (MERN) y control de versiones",
+          id: "automation_ai",
+          title: "Automatización & IA",
+          description: "Agentes autónomos, LLMs aplicados e integración de flujos de trabajo corporativos",
           skills: [
-            { name: "C#", level: "Intermedio", highlight: false },
-            { name: "Java", level: "Intermedio", highlight: false },
-            { name: "JavaScript", level: "Intermedio", highlight: true },
-            { name: "Git", level: "Intermedio", highlight: false },
-            { name: "MongoDB", level: "Intermedio", highlight: true },
-            { name: "Express.js", level: "Intermedio", highlight: true },
-            { name: "React", level: "Intermedio", highlight: true },
-            { name: "Node.js", level: "Intermedio", highlight: true }
+            { name: "LLMs y Agentes de IA aplicados", level: "Avanzado", highlight: true, description: "Integración de modelos fundacionales, agentes autónomos y automatización cognitiva." },
+            { name: "Power Platform", level: "Avanzado", highlight: true, description: "Automatización de flujos con SAP Ariba y Doc2Sign y soluciones empresariales." },
+            { name: "Microsoft Excel", level: "Avanzado", highlight: true, description: "Modelado avanzado de datos, macros, fórmulas matriciales y preparación analítica." }
           ]
         },
         {
-          id: "basic",
-          title: "Nivel Básico",
-          description: "Desarrollo y fundamentos de aplicaciones móviles multiplataforma",
+          id: "frontend_core",
+          title: "Frontend & Core",
+          description: "Interfaces interactivas accesibles, tecnologías web fundamentales y control de versiones",
           skills: [
-            { name: "Flutter", level: "Básico", highlight: false }
+            { name: "React", level: "Intermedio", highlight: true, description: "Desarrollo de interfaces modulares, reactivas y accesibles con React Hooks y Vite." },
+            { name: "JavaScript", level: "Intermedio", highlight: true, description: "Lógica moderna ES6+, asincronía, manipulación del DOM y arquitectura web." },
+            { name: "HTML", level: "Avanzado", highlight: false, description: "Estructuras web semánticas, accesibilidad (a11y) y buenas prácticas SEO." },
+            { name: "CSS", level: "Avanzado", highlight: false, description: "Diseño responsivo, CSS Modules, variables de diseño y estética Soft Japandi." },
+            { name: "Git", level: "Intermedio", highlight: false, description: "Control de versiones distribuido, branching, pull requests y flujos colaborativos." },
+            { name: "Flutter", level: "Básico", highlight: false, description: "Construcción de interfaces móviles multiplataforma y lógica declarativa." }
           ]
         }
       ]
@@ -236,7 +249,12 @@ export const translations = {
         { id: "contact", label: "Contact" }
       ],
       ctaContact: "Get in Touch",
-      menuAria: "Toggle navigation menu"
+      menuAria: "Toggle navigation menu",
+      themeToggleAria: "Toggle theme (Light / Dark)",
+      themeLight: "Light Mode",
+      themeDark: "Dark Mode",
+      themeLightShort: "Light",
+      themeDarkShort: "Dark"
     },
     hero: {
       badge: "Open to new professional opportunities",
@@ -328,45 +346,53 @@ export const translations = {
     skills: {
       sectionTag: "Technical Expertise",
       sectionTitle: "Technology Stack & Core Competencies",
-      sectionSubtitle: "Structured toolset and core competencies organized by proficiency level",
-      filterAll: "All Skills",
+      sectionSubtitle: "Filter by domain or tap any skill to inspect practical applications",
+      filterAll: "All",
+      filters: [
+        { id: "all", label: "All" },
+        { id: "backend_data", label: "Backend & Data" },
+        { id: "automation_ai", label: "Automation & AI" },
+        { id: "frontend_core", label: "Frontend & Core" }
+      ],
+      tapHint: "Tap to view practical application",
+      closeTooltip: "Close",
       categories: [
         {
-          id: "advanced",
-          title: "Advanced Level",
-          description: "Deep proficiency, data architecture, and production delivery in enterprise ecosystems",
+          id: "backend_data",
+          title: "Backend & Data",
+          description: "API design, relational & NoSQL data architectures, and high-performance persistence",
           skills: [
-            { name: "Python", level: "Advanced", highlight: true },
-            { name: "R", level: "Advanced", highlight: true },
-            { name: "SQL", level: "Advanced", highlight: true },
-            { name: "Applied LLMs & AI Agents", level: "Advanced", highlight: true },
-            { name: "Power Platform", level: "Advanced", highlight: true },
-            { name: "HTML", level: "Advanced", highlight: false },
-            { name: "CSS", level: "Advanced", highlight: false },
-            { name: "Microsoft Excel", level: "Advanced", highlight: true }
+            { name: "Python", level: "Advanced", highlight: true, description: "Backend development, automation scripts, and data analysis pipelines." },
+            { name: "R", level: "Advanced", highlight: true, description: "Statistical analysis, modeling, and automated analytical reporting." },
+            { name: "SQL", level: "Advanced", highlight: true, description: "Relational query design and performance optimization in enterprise environments." },
+            { name: "C#", level: "Intermediate", highlight: false, description: "Robust service engineering and object-oriented logic in .NET ecosystems." },
+            { name: "Java", level: "Intermediate", highlight: false, description: "Object-oriented programming, data structures, and enterprise applications." },
+            { name: "MongoDB", level: "Intermediate", highlight: true, description: "NoSQL data modeling, collection architectures, and aggregation pipelines." },
+            { name: "Express.js", level: "Intermediate", highlight: true, description: "Secure REST APIs, modular routing, and backend middleware with Node.js." },
+            { name: "Node.js", level: "Intermediate", highlight: true, description: "Asynchronous backend runtime for scalable microservices and APIs." }
           ]
         },
         {
-          id: "intermediate",
-          title: "Intermediate Level",
-          description: "Backend services, end-to-end MERN stack components, and version control workflows",
+          id: "automation_ai",
+          title: "Automation & AI",
+          description: "Autonomous agents, applied LLMs, and enterprise business workflow automation",
           skills: [
-            { name: "C#", level: "Intermediate", highlight: false },
-            { name: "Java", level: "Intermediate", highlight: false },
-            { name: "JavaScript", level: "Intermediate", highlight: true },
-            { name: "Git", level: "Intermediate", highlight: false },
-            { name: "MongoDB", level: "Intermediate", highlight: true },
-            { name: "Express.js", level: "Intermediate", highlight: true },
-            { name: "React", level: "Intermediate", highlight: true },
-            { name: "Node.js", level: "Intermediate", highlight: true }
+            { name: "Applied LLMs & AI Agents", level: "Advanced", highlight: true, description: "Foundation model integration, autonomous agents, and cognitive workflow automation." },
+            { name: "Power Platform", level: "Advanced", highlight: true, description: "End-to-end workflow automation connecting SAP Ariba, Doc2Sign, and enterprise services." },
+            { name: "Microsoft Excel", level: "Advanced", highlight: true, description: "Advanced data modeling, macros, complex formulas, and analytical preparation." }
           ]
         },
         {
-          id: "basic",
-          title: "Basic Level",
-          description: "Core architecture and fundamentals for cross-platform mobile apps",
+          id: "frontend_core",
+          title: "Frontend & Core",
+          description: "Interactive accessible interfaces, fundamental web technologies, and version control",
           skills: [
-            { name: "Flutter", level: "Basic", highlight: false }
+            { name: "React", level: "Intermediate", highlight: true, description: "Modular, reactive, and accessible user interfaces built with React Hooks and Vite." },
+            { name: "JavaScript", level: "Intermediate", highlight: true, description: "Modern ES6+ logic, asynchronous programming, DOM handling, and web architecture." },
+            { name: "HTML", level: "Advanced", highlight: false, description: "Semantic web architecture, accessibility (a11y), and technical SEO standards." },
+            { name: "CSS", level: "Advanced", highlight: false, description: "Responsive styling, CSS Modules, custom design tokens, and Soft Japandi aesthetics." },
+            { name: "Git", level: "Intermediate", highlight: false, description: "Distributed version control, branching strategies, PR workflows, and code collaboration." },
+            { name: "Flutter", level: "Basic", highlight: false, description: "Cross-platform mobile UI development and declarative widget architectures." }
           ]
         }
       ]

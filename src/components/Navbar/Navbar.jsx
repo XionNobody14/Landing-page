@@ -8,6 +8,22 @@ const Navbar = ({ activeTab, setActiveTab }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Theme state with localStorage persistence and system preference detection
+  const [theme, setTheme] = useState(() => {
+    try {
+      const savedTheme = localStorage.getItem('portfolio_theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        return savedTheme;
+      }
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+    } catch {
+      // fallback
+    }
+    return 'light';
+  });
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -16,6 +32,20 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Update data-theme on document element whenever theme changes
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('portfolio_theme', theme);
+    } catch {
+      // fallback
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   // Close mobile drawer on Escape key and prevent background scroll when open
   useEffect(() => {
@@ -110,8 +140,35 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           })}
         </nav>
 
-        {/* Actions Group (Language Switcher + Desktop Contact CTA) */}
+        {/* Actions Group (Theme Toggle + Language Switcher + Desktop Contact CTA) */}
         <div className={styles.navActions}>
+          {/* Zen Light / Dark Mode Toggle Button */}
+          <button
+            type="button"
+            className={styles.themeToggleBtn}
+            onClick={toggleTheme}
+            aria-label={t.navbar.themeToggleAria}
+            title={theme === 'dark' ? t.navbar.themeLight : t.navbar.themeDark}
+          >
+            {theme === 'dark' ? (
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            )}
+          </button>
+
           <LanguageSwitcher />
 
           {/* Desktop Contact CTA Button (hidden on mobile <= 768px) */}
@@ -208,8 +265,45 @@ const Navbar = ({ activeTab, setActiveTab }) => {
           })}
         </nav>
 
-        {/* Relocated Prominent Contact CTA Button in Drawer */}
+        {/* Drawer Options & Footer */}
         <div className={styles.drawerFooter}>
+          {/* Mobile Drawer Theme Option (Accessible & Touch Friendly >= 44px) */}
+          <button
+            type="button"
+            className={styles.drawerThemeOption}
+            onClick={toggleTheme}
+            aria-label={t.navbar.themeToggleAria}
+          >
+            <div className={styles.drawerThemeLeft}>
+              <span className={styles.drawerThemeIconBox}>
+                {theme === 'dark' ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+                )}
+              </span>
+              <span className={styles.drawerThemeLabel}>
+                {theme === 'dark' ? t.navbar.themeDark : t.navbar.themeLight}
+              </span>
+            </div>
+            <span className={styles.drawerThemePill}>
+              {theme === 'dark' ? t.navbar.themeDarkShort : t.navbar.themeLightShort}
+            </span>
+          </button>
+
+          {/* Relocated Prominent Contact CTA Button in Drawer */}
           <button
             type="button"
             className={styles.drawerContactBtn}

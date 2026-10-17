@@ -2,10 +2,42 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='50' fill='%2338bdf8'>AC</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Andrés Chávez | Software Developer - Backend & Enterprise Applications</title>
-    <meta name="description" content="Portfolio profesional de Andrés Alejandro Chávez Vázquez - Ingeniero en Tecnología de Software especializado en desarrollo backend, arquitectura empresarial y automatización." />
+    
+    <title>Andrés Alejandro Chávez Vázquez | Desarrollador Backend & Aplicaciones Empresariales</title>
+    
+    <!-- Metaetiquetas esenciales de SEO -->
+    <meta name="description" content="Portafolio profesional de Andrés Alejandro Chávez Vázquez. Ingeniero en Tecnología de Software especializado en backend, integraciones empresariales y agentes de IA." />
+    <meta name="keywords" content="Andrés Chávez, Backend Developer, Java, Python, SQL Server, Power Platform, Agentes IA, LLMs, UANL, Banorte" />
+    <meta name="author" content="Andrés Alejandro Chávez Vázquez" />
+    
+    <!-- Metaetiquetas OpenGraph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Andrés Chávez | Desarrollador de Software & IA" />
+    <meta property="og:description" content="Más de 2 años de experiencia en desarrollo backend corporativo, integraciones REST y automatización con agentes de IA." />
+    <meta property="og:url" content="https://tu-dominio.vercel.app" />
+    <meta property="og:image" content="/og-preview.png" />
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Andrés Chávez | Desarrollador de Software & IA" />
+    <meta name="twitter:description" content="Especialista en aplicaciones empresariales, bases de datos y automatización con agentes de IA." />
+
+    <!-- Anti-FOUC Theme Initialization -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('portfolio_theme');
+          if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">

@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import styles from './Skills.module.css';
 
 const getCategoryIcon = (categoryId) => {
   switch (categoryId) {
-    case 'advanced':
-    case 'backend':
+    case 'backend_data':
       return (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
         </svg>
       );
-    case 'intermediate':
-    case 'frontend':
+    case 'automation_ai':
       return (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+          <circle cx="12" cy="12" r="3"></circle>
         </svg>
       );
-    case 'basic':
-    case 'automation':
+    case 'frontend_core':
     default:
       return (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
         </svg>
       );
   }
@@ -33,6 +34,23 @@ const getCategoryIcon = (categoryId) => {
 const Skills = () => {
   const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
+  const [activeTooltip, setActiveTooltip] = useState(null);
+
+  // Close open tooltip when clicking anywhere outside
+  useEffect(() => {
+    const handleGlobalClick = (e) => {
+      if (!e.target.closest(`.${styles.skillBadgeItem}`)) {
+        setActiveTooltip(null);
+      }
+    };
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
+
+  const handleBadgeClick = (e, skillName) => {
+    e.stopPropagation();
+    setActiveTooltip((prev) => (prev === skillName ? null : skillName));
+  };
 
   const filteredCategories = activeFilter === 'all'
     ? t.skills.categories
@@ -47,29 +65,29 @@ const Skills = () => {
           <p className="sectionSubtitle">{t.skills.sectionSubtitle}</p>
         </div>
 
-        {/* Filter Navigation */}
-        <div className={styles.filterBar}>
-          <button
-            type="button"
-            className={`${styles.filterBtn} ${activeFilter === 'all' ? styles.filterActive : ''}`}
-            onClick={() => setActiveFilter('all')}
-          >
-            {t.skills.filterAll}
-          </button>
-          {t.skills.categories.map((category) => (
-            <button
-              key={category.id}
-              type="button"
-              className={`${styles.filterBtn} ${activeFilter === category.id ? styles.filterActive : ''}`}
-              onClick={() => setActiveFilter(category.id)}
-            >
-              {category.title}
-            </button>
-          ))}
+        {/* Filter Chips Bar (Smooth horizontal scroll on mobile) */}
+        <div className={styles.filterScrollWrapper}>
+          <div className={styles.filterBar} role="tablist" aria-label="Filtros de habilidades">
+            {t.skills.filters.map((filter) => {
+              const isActive = activeFilter === filter.id;
+              return (
+                <button
+                  key={filter.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`${styles.filterBtn} ${isActive ? styles.filterActive : ''}`}
+                  onClick={() => setActiveFilter(filter.id)}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Categories and Badges Grid */}
-        <div className={styles.categoriesGrid}>
+        {/* Categories Grid */}
+        <div className={`${styles.categoriesGrid} ${activeFilter !== 'all' ? styles.singleCategoryGrid : ''}`}>
           {filteredCategories.map((cat) => (
             <article key={cat.id} className={styles.categoryCard}>
               <div className={styles.categoryTop}>
@@ -82,20 +100,70 @@ const Skills = () => {
               <p className={styles.categoryDesc}>{cat.description}</p>
 
               <div className={styles.skillsBadgeList}>
-                {cat.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className={`${styles.skillBadgeItem} ${
-                      skill.highlight ? styles.skillHighlight : ''
-                    }`}
-                  >
-                    <div className={styles.skillLeft}>
-                      <span className={styles.skillIndicator} />
-                      <span className={styles.skillName}>{skill.name}</span>
+                {cat.skills.map((skill) => {
+                  const isTooltipOpen = activeTooltip === skill.name;
+                  return (
+                    <div
+                      key={skill.name}
+                      tabIndex="0"
+                      role="button"
+                      aria-expanded={isTooltipOpen}
+                      aria-label={`${skill.name} - ${skill.level}`}
+                      className={`${styles.skillBadgeItem} ${
+                        skill.highlight ? styles.skillHighlight : ''
+                      } ${isTooltipOpen ? styles.skillBadgeOpen : ''}`}
+                      onClick={(e) => handleBadgeClick(e, skill.name)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          handleBadgeClick(e, skill.name);
+                        }
+                      }}
+                    >
+                      <div className={styles.skillLeft}>
+                        <span className={styles.skillIndicator} />
+                        <span className={styles.skillName}>{skill.name}</span>
+                      </div>
+
+                      <div className={styles.skillRight}>
+                        <span className={styles.skillLevel}>{skill.level}</span>
+                        <span className={styles.infoHintIcon} title={t.skills.tapHint}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                          </svg>
+                        </span>
+                      </div>
+
+                      {/* Tooltip con micro-descripción de aplicación real */}
+                      {isTooltipOpen && (
+                        <div
+                          className={styles.tooltipBox}
+                          role="tooltip"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <div className={styles.tooltipHeader}>
+                            <span className={styles.tooltipTitle}>{skill.name}</span>
+                            <button
+                              type="button"
+                              className={styles.tooltipCloseBtn}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveTooltip(null);
+                              }}
+                              aria-label={t.skills.closeTooltip}
+                            >
+                              ✕
+                            </button>
+                          </div>
+                          <p className={styles.tooltipText}>{skill.description}</p>
+                          <div className={styles.tooltipArrow} />
+                        </div>
+                      )}
                     </div>
-                    <span className={styles.skillLevel}>{skill.level}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </article>
           ))}
