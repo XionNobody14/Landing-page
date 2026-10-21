@@ -215,8 +215,18 @@ export const translations = {
       directMailAction: "Enviar Correo Directo",
       directCallAction: "Llamar por Teléfono",
       socialLinks: [
-        { name: "LinkedIn", url: "https://www.linkedin.com/in/andres-chavez-placeholder", handle: "in/andres-chavez" },
-        { name: "GitHub", url: "https://github.com/andres-chavez-placeholder", handle: "github.com/andres-chavez" }
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/andrés-chávez-75328a225",
+          handle: "in/andrés-chávez",
+          ariaLabel: "LinkedIn - Andrés Chávez"
+        },
+        {
+          name: "GitHub",
+          url: "https://github.com/XionNobody14",
+          handle: "github.com/XionNobody14",
+          ariaLabel: "GitHub - XionNobody14"
+        }
       ],
       cardTitle: "Envíame un mensaje",
       cardNote: "Listo para aportar valor en puestos de Desarrollo de Software, Automatización de Procesos o Análisis Técnico de Sistemas.",
@@ -453,8 +463,18 @@ export const translations = {
       directMailAction: "Send Direct Email",
       directCallAction: "Call Directly",
       socialLinks: [
-        { name: "LinkedIn", url: "https://www.linkedin.com/in/andres-chavez-placeholder", handle: "in/andres-chavez" },
-        { name: "GitHub", url: "https://github.com/andres-chavez-placeholder", handle: "github.com/andres-chavez" }
+        {
+          name: "LinkedIn",
+          url: "https://www.linkedin.com/in/andrés-chávez-75328a225",
+          handle: "in/andrés-chávez",
+          ariaLabel: "LinkedIn - Andrés Chávez"
+        },
+        {
+          name: "GitHub",
+          url: "https://github.com/XionNobody14",
+          handle: "github.com/XionNobody14",
+          ariaLabel: "GitHub - XionNobody14"
+        }
       ],
       cardTitle: "Send a Message",
       cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Technical Systems roles.",

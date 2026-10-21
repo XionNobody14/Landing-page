@@ -110,7 +110,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.socialPill}
-                    aria-label={social.name}
+                    aria-label={social.ariaLabel || (social.name === 'LinkedIn' ? 'LinkedIn - Andrés Chávez' : 'GitHub - XionNobody14')}
                   >
                     {social.name === 'LinkedIn' ? (
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
