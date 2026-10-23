@@ -221,3 +221,99 @@
     font-size: 1.05rem;
   }
 }
+
+@media (max-width: 480px) {
+  .timelineContainer {
+    gap: 24px;
+  }
+
+  .timelineContainer::before {
+    left: 8px;
+  }
+
+  .cardWrapper {
+    padding-left: 26px;
+  }
+
+  .timelineMarker {
+    left: 0;
+    top: 22px;
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 0 0 2px var(--color-surface);
+  }
+
+  .timelineMarkerInner {
+    width: 4px;
+    height: 4px;
+  }
+
+  .experienceCard {
+    padding: 18px 14px;
+    border-radius: var(--radius-md);
+  }
+
+  .cardTopHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .companyBadge {
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  .companyIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .roleTitle {
+    font-size: 0.975rem;
+    line-height: 1.35;
+  }
+
+  .locationText {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .roleDescription {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .achievementsList {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .achievementItem {
+    font-size: 0.85rem;
+    gap: 8px;
+    line-height: 1.55;
+  }
+
+  .bulletIcon {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+  }
+
+  .techTitle {
+    font-size: 0.7rem;
+  }
+
+  .techList {
+    gap: 6px;
+  }
+
+  .techBadge {
+    font-size: 0.725rem;
+    padding: 3px 8px;
+  }
+}

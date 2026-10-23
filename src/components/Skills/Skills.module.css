@@ -312,7 +312,7 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
-    padding-bottom: 6px;
+    padding-bottom: 8px;
   }
 
   .filterScrollWrapper::-webkit-scrollbar {
@@ -324,21 +324,96 @@
     width: auto;
     min-width: 100%;
     justify-content: flex-start;
+    padding: 6px;
+    gap: 8px;
   }
 
   .filterBtn {
-    padding: 8px 14px;
-    font-size: 0.8rem;
+    padding: 9px 16px;
+    font-size: 0.825rem;
+    min-height: 42px;
+  }
+
+  .skillBadgeItem {
+    min-height: 44px;
+    padding: 10px 14px;
   }
 
   .tooltipBox {
-    left: 10%;
-    transform: none;
-    width: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% + 12px);
+    max-width: min(300px, 90vw);
+    bottom: calc(100% + 8px);
+    padding: 12px 14px;
+    animation: tooltipFadeInMobile 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .tooltipArrow {
-    left: 20%;
-    transform: none;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .tooltipCloseBtn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoryCard {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .categoryTop {
+    gap: 10px;
+  }
+
+  .categoryIconBox {
+    width: 38px;
+    height: 38px;
+  }
+
+  .categoryTitle {
+    font-size: 1.05rem;
+  }
+
+  .categoryDesc {
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+
+  .skillName {
+    font-size: 0.825rem;
+  }
+
+  .skillLevel {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  .tooltipBox {
+    width: 100%;
+    max-width: 270px;
+    padding: 10px 12px;
+  }
+
+  .tooltipText {
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+}
+
+@keyframes tooltipFadeInMobile {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
