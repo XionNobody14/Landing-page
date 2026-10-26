@@ -277,10 +277,34 @@ img, svg {
 [class*="metricCard"]:hover,
 [class*="experienceCard"]:hover,
 [class*="categoryCard"]:hover,
-[class*="degreeCard"]:hover {
-  transform: translateY(-3px) !important;
+[class*="degreeCard"]:hover,
+[class*="projectCard"]:hover {
+  transform: translateY(-4px) scale(1.005) !important;
   border-color: var(--color-wood) !important;
-  box-shadow: var(--shadow-hover) !important;
+  box-shadow: var(--shadow-hover), 0 0 0 1px rgba(194, 166, 140, 0.22) !important;
+}
+
+/* Accesibilidad de Teclado (WCAG 2.1 AA/AAA Focus Ring) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2.5px solid var(--color-wood-dark);
+  outline-offset: 2px;
+}
+
+/* Respeto a Preferencias de Movimiento Reducido (WCAG 2.1) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Botones con calidez artesanal Japandi */

@@ -5,6 +5,7 @@ export const translations = {
       roleShort: "Software Dev",
       navLinks: [
         { id: "home", label: "Sobre Mí" },
+        { id: "projects", label: "Proyectos" },
         { id: "experience", label: "Experiencia" },
         { id: "skills", label: "Habilidades" },
         { id: "education", label: "Educación" },
@@ -22,10 +23,12 @@ export const translations = {
       badge: "Disponible para nuevos retos profesionales",
       greeting: "Hola, me llamo",
       fullName: "Andrés Alejandro Chávez Vázquez",
-      role: "Desarrollador de Software | Backend & Aplicaciones Empresariales",
+      role: "Desarrollador de Software | Backend, Datos & Agentes de IA",
       location: "Santa Catarina, Nuevo León, México",
       summary: "Ingeniero en Tecnología de Software titulado con más de 2 años de experiencia en desarrollo backend, integraciones entre sistemas en entornos corporativos y automatización de procesos mediante agentes de IA y LLMs.",
-      ctaExperience: "Impacto",
+      avatarAlt: "Avatar e insignia profesional de ingeniería de software de Andrés Alejandro Chávez Vázquez",
+      ctaExperience: "Ver Impacto",
+      ctaProjects: "Casos de Estudio",
       ctaContact: "Contactar Ahora",
       downloadCv: "Descargar CV",
       cvFileName: "CV-Andres-Chavez.pdf",
@@ -65,6 +68,88 @@ export const translations = {
           unit: "Tickets/mes",
           title: "Soporte Técnico Resuelto",
           description: "Resolución de incidencias de software directamente con usuarios operativos con documentación estructurada."
+        }
+      ]
+    },
+    projects: {
+      sectionTag: "Casos de Estudio Interactivos",
+      sectionTitle: "Proyectos & Sistemas en Producción",
+      sectionSubtitle: "Explora cada caso de estudio bajo el enfoque Problema → Solución Técnica → Impacto Real",
+      filters: [
+        { id: "all", label: "Todos" },
+        { id: "enterprise", label: "Backend & Enterprise" },
+        { id: "automation", label: "Integraciones & APIs" },
+        { id: "ai", label: "Agentes de IA & LLMs" },
+        { id: "data", label: "Datos & Analítica" }
+      ],
+      problemLabel: "Problema / Reto",
+      solutionLabel: "Solución de Ingeniería",
+      impactLabel: "Impacto Medible",
+      expandBtn: "Desglosar Caso (Problema / Solución / Impacto)",
+      collapseBtn: "Ocultar Desglose",
+      modalBtn: "Abrir Ficha Técnica",
+      closeModalAria: "Cerrar ventana de caso de estudio",
+      items: [
+        {
+          id: "procurement-suite",
+          category: "enterprise",
+          categoryLabel: "Sistemas Empresariales",
+          company: "Grupo Financiero Banorte",
+          period: "2023 - Presente",
+          metricBadge: "3 Apps en Producción",
+          title: "Suite de Aplicaciones Internas para Procurement & Gestión Relacional",
+          summary: "Ecosistema de 3 aplicaciones empresariales conectadas a SQL Server para centralizar operaciones críticas de adquisiciones, trazabilidad y control operativo.",
+          imageAlt: "Diagrama de arquitectura de la Suite de Procurement conectada a SQL Server",
+          problem: "Los procesos críticos de seguimiento de adquisiciones dependían de hojas de cálculo aisladas y registros manuales, provocando silos de información, conflictos de concurrencia y demoras en la visibilidad del estado de contratos.",
+          solution: "Diseñé e implementé el ciclo completo de 3 aplicaciones internas conectadas a bases de datos relacionales SQL Server, incorporando validaciones de integridad de datos, vistas por rol operativo y consultas optimizadas.",
+          impact: "Adopción diaria sostenida por parte de los especialistas operativos del área, eliminación del 100% de errores por duplicidad de archivos y trazabilidad histórica centralizada lista para auditoría.",
+          technologies: ["SQL Server", "Power Platform", "Python", "Data Modeling", "Git"]
+        },
+        {
+          id: "ariba-doc2sign-orchestrator",
+          category: "automation",
+          categoryLabel: "Integración & Automatización",
+          company: "Grupo Financiero Banorte",
+          period: "2023 - Presente",
+          metricBadge: "6 Flujos End-to-End",
+          title: "Orquestador Automatizado SAP Ariba & Doc2Sign vía REST APIs",
+          summary: "Arquitectura de integración automatizada para sincronizar requisiciones, flujos de aprobación y firmas electrónicas entre plataformas corporativas.",
+          imageAlt: "Esquema del flujo de integración REST API entre SAP Ariba y Doc2Sign",
+          problem: "El enrutamiento de contratos, recolección de firmas en Doc2Sign y actualización de estatus en SAP Ariba requería intervención manual repetitiva, generando cuellos de botella operativos.",
+          problemShort: "Cuellos de botella manuales entre SAP Ariba y firmas digitales.",
+          solution: "Construí 6 flujos automatizados end-to-end mediante conectores REST API, transformación estructurada de payloads JSON, manejo de reintentos y alertas automáticas de estatus.",
+          impact: "Reducción drástica en tiempos de ciclo de formalización contractual, cero errores de captura manual en 6 procesos clave y soporte continuo respaldado por ~120 tickets mensuales resueltos.",
+          technologies: ["REST APIs", "Power Automate", "SAP Ariba", "Doc2Sign", "JSON"]
+        },
+        {
+          id: "ai-agents-workflow",
+          category: "ai",
+          categoryLabel: "Agentes de IA & LLMs",
+          company: "Ingeniería de Automatización & IA",
+          period: "2024 - Presente",
+          metricBadge: "Agentes Autónomos",
+          title: "Pipeline de Agentes de IA & Asistentes Cognitivos para Operaciones",
+          summary: "Orquestación de modelos de lenguaje (LLMs) y agentes autónomos orientados a clasificación técnica, estructuración de datos y asistencia operativa.",
+          imageAlt: "Arquitectura de orquestación de Agentes de IA con salidas estructuradas",
+          problem: "El análisis de incidencias recurrentes, triaje de tickets técnicos y síntesis de documentación extensa demandaba alto tiempo de ingeniería y revisión manual.",
+          solution: "Desarrollé flujos basados en LLMs y agentes de IA en Python y Node.js con validación de salidas estructuradas, recuperación de contexto y ejecución modular de herramientas.",
+          impact: "Aceleración en el diagnóstico de causa raíz, estandarización de reportes técnicos y creación de una arquitectura reutilizable de agentes para flujos empresariales.",
+          technologies: ["Python", "LLMs & AI Agents", "Node.js", "REST APIs", "Prompt Engineering"]
+        },
+        {
+          id: "fime-retention-analytics",
+          category: "data",
+          categoryLabel: "Ciencia de Datos & Backend",
+          company: "FIME - UANL",
+          period: "2022 - 2026",
+          metricBadge: "3 Programas Adoptados",
+          title: "Sistema de Analítica Predictiva y Persistencia Estudiantil",
+          summary: "Herramientas de software y pipelines estadísticos en Python y R para evaluar cohortes académicas y automatizar reportes institucionales.",
+          imageAlt: "Visualización del pipeline de datos y analítica estudiantil en Python y R",
+          problem: "Las coordinaciones académicas carecían de herramientas automatizadas para procesar grandes volúmenes de datos históricos y detectar factores de riesgo en la retención estudiantil.",
+          solution: "Programé motores de procesamiento estadístico y visualización en Python, R y SQL que limpian, modelan y transforman indicadores académicos en reportes ejecutivos automatizados.",
+          impact: "Logré que 3 programas de software desarrollados fueran adoptados formalmente en asignaturas del plan de estudios oficial de FIME-UANL.",
+          technologies: ["Python", "R", "SQL", "Statistical Modeling", "Data Pipelines"]
         }
       ]
     },
@@ -228,8 +313,39 @@ export const translations = {
           ariaLabel: "GitHub - XionNobody14"
         }
       ],
-      cardTitle: "Envíame un mensaje",
-      cardNote: "Listo para aportar valor en puestos de Desarrollo de Software, Automatización de Procesos o Análisis Técnico de Sistemas.",
+      cardTitle: "Acciones Rápidas",
+      cardNote: "Listo para aportar valor inmediato en puestos de Desarrollo de Software, Automatización de Procesos o Ingeniería Backend.",
+      form: {
+        title: "Envíame un Mensaje Directo",
+        subtitle: "Validación interactiva en tiempo real. Los campos requeridos se verifican al completar cada entrada.",
+        nameLabel: "Nombre Completo o Empresa",
+        nameHint: "Mínimo 2 caracteres (ej. Ana Martínez - Tech Recruiter)",
+        namePlaceholder: "Tu nombre o empresa",
+        nameError: "Por favor ingresa tu nombre (mínimo 2 caracteres).",
+        emailLabel: "Correo Electrónico de Contacto",
+        emailHint: "Formato: correo@dominio.com",
+        emailPlaceholder: "nombre@empresa.com",
+        emailError: "Ingresa una dirección de correo electrónico válida.",
+        subjectLabel: "Motivo de Contacto",
+        subjectHint: "Selecciona el enfoque principal de tu mensaje",
+        subjectOptions: [
+          { value: "Vacante Backend / Software Engineer", label: "Oportunidad Laboral — Backend / Software Dev" },
+          { value: "Proyecto Automatización e IA", label: "Automatización de Procesos & Agentes de IA" },
+          { value: "Integración de Sistemas y Datos", label: "Integración de Sistemas & Datos (SQL / APIs)" },
+          { value: "Colaboración General", label: "Colaboración Técnica / Consultoría" }
+        ],
+        messageLabel: "Detalles del Mensaje",
+        messageHint: "Mínimo 15 caracteres describiendo el rol, proyecto o consulta técnica",
+        messagePlaceholder: "Hola Andrés, revisé tus casos de estudio y me gustaría conversar sobre una oportunidad...",
+        messageError: "Por favor escribe un mensaje con al menos 15 caracteres.",
+        submitIdle: "Enviar Mensaje",
+        submitLoading: "Validando y preparando envío...",
+        submitSuccessTitle: "¡Mensaje validado y listo!",
+        submitSuccessText: "Tu mensaje ha sido estructurado. Se abrió tu cliente de correo para confirmar el envío directo a andreschavezv2003@gmail.com.",
+        submitErrorTitle: "Revisa los campos marcados",
+        submitErrorText: "Por favor corrige los campos con alerta antes de continuar.",
+        sendAnother: "Enviar otro mensaje"
+      },
       modal: {
         title: "Descargar Currículum",
         subtitle: "Selecciona el idioma del documento:",
@@ -242,7 +358,7 @@ export const translations = {
     },
     footer: {
       rights: "Todos los derechos reservados.",
-      developedWith: "Diseñado y desarrollado con React, Vite y CSS Modules.",
+      developedWith: "Diseñado y desarrollado con React, Vite y estética Soft Japandi.",
       backToTop: "Volver arriba"
     }
   },
@@ -253,6 +369,7 @@ export const translations = {
       roleShort: "Software Dev",
       navLinks: [
         { id: "home", label: "About Me" },
+        { id: "projects", label: "Projects" },
         { id: "experience", label: "Experience" },
         { id: "skills", label: "Skills" },
         { id: "education", label: "Education" },
@@ -270,10 +387,12 @@ export const translations = {
       badge: "Open to new professional opportunities",
       greeting: "Hello, my name is",
       fullName: "Andrés Alejandro Chávez Vázquez",
-      role: "Software Developer | Backend & Enterprise Applications",
+      role: "Software Developer | Backend, Data & AI Agents",
       location: "Santa Catarina, Nuevo León, Mexico",
       summary: "Licensed Software Technology Engineer with over 2 years of experience in backend development, enterprise system integrations, and business process automation leveraging AI agents and LLMs.",
-      ctaExperience: "Impact",
+      avatarAlt: "Professional software engineering emblem and avatar of Andrés Alejandro Chávez Vázquez",
+      ctaExperience: "View Impact",
+      ctaProjects: "Case Studies",
       ctaContact: "Get in Touch",
       downloadCv: "Download Resume",
       cvFileName: "Resume-Andres-Chavez.pdf",
@@ -313,6 +432,87 @@ export const translations = {
           unit: "Tickets/mo",
           title: "Resolved Support Tickets",
           description: "Direct resolution of operational software incidents with structured documentation for stakeholders."
+        }
+      ]
+    },
+    projects: {
+      sectionTag: "Interactive Case Studies",
+      sectionTitle: "Production Projects & Systems Architecture",
+      sectionSubtitle: "Explore each engineering case study structured by Problem → Technical Solution → Measurable Impact",
+      filters: [
+        { id: "all", label: "All" },
+        { id: "enterprise", label: "Backend & Enterprise" },
+        { id: "automation", label: "Integrations & APIs" },
+        { id: "ai", label: "AI Agents & LLMs" },
+        { id: "data", label: "Data & Analytics" }
+      ],
+      problemLabel: "The Problem / Challenge",
+      solutionLabel: "Engineering Solution",
+      impactLabel: "Measurable Impact",
+      expandBtn: "Inspect Case Study (Problem / Solution / Impact)",
+      collapseBtn: "Hide Breakdown",
+      modalBtn: "Open Technical Spec",
+      closeModalAria: "Close case study dialog",
+      items: [
+        {
+          id: "procurement-suite",
+          category: "enterprise",
+          categoryLabel: "Enterprise Systems",
+          company: "Grupo Financiero Banorte",
+          period: "2023 - Present",
+          metricBadge: "3 Production Apps",
+          title: "Internal Procurement Application Suite & Relational Data Core",
+          summary: "Ecosystem of 3 enterprise applications wired to SQL Server to centralize mission-critical procurement workflows, auditability, and operational governance.",
+          imageAlt: "Architecture diagram of the Procurement Application Suite connected to SQL Server",
+          problem: "Critical procurement tracking relied on fragmented spreadsheets and manual logs, resulting in data silos, concurrency conflicts, and delayed visibility into contract lifecycles.",
+          solution: "Engineered the full lifecycle of 3 internal applications backed by relational SQL Server schemas, strict data integrity validations, role-based views, and optimized queries.",
+          impact: "Sustained daily adoption by operational procurement specialists, 100% elimination of file duplication errors, and centralized audit-ready traceability.",
+          technologies: ["SQL Server", "Power Platform", "Python", "Data Modeling", "Git"]
+        },
+        {
+          id: "ariba-doc2sign-orchestrator",
+          category: "automation",
+          categoryLabel: "Integration & Automation",
+          company: "Grupo Financiero Banorte",
+          period: "2023 - Present",
+          metricBadge: "6 End-to-End Workflows",
+          title: "Automated SAP Ariba & Doc2Sign Orchestrator via REST APIs",
+          summary: "Automated integration architecture synchronizing requisitions, approval chains, and digital signatures across corporate platforms.",
+          imageAlt: "REST API integration flow diagram between SAP Ariba and Doc2Sign",
+          problem: "Contract routing, signature collection in Doc2Sign, and status synchronization in SAP Ariba required repetitive manual intervention, creating operational bottlenecks.",
+          solution: "Built 6 end-to-end automated workflows utilizing REST API connectors, structured JSON payload transformations, retry resilience, and automated status notifications.",
+          impact: "Drastic reduction in contract turnaround times, zero manual data-entry errors across 6 core workflows, and ongoing reliability backed by ~120 monthly tickets resolved.",
+          technologies: ["REST APIs", "Power Automate", "SAP Ariba", "Doc2Sign", "JSON"]
+        },
+        {
+          id: "ai-agents-workflow",
+          category: "ai",
+          categoryLabel: "AI Agents & LLMs",
+          company: "AI & Automation Engineering",
+          period: "2024 - Present",
+          metricBadge: "Autonomous Agents",
+          title: "AI Agent Pipeline & Cognitive Assistants for Technical Operations",
+          summary: "Orchestration of Large Language Models (LLMs) and autonomous agents designed for technical triage, structured data extraction, and operational assistance.",
+          imageAlt: "AI Agent orchestration architecture diagram with structured outputs",
+          problem: "Recurring incident analysis, technical ticket triage, and synthesis of extensive documentation consumed significant engineering bandwidth.",
+          solution: "Developed LLM-powered agent workflows in Python and Node.js featuring structured JSON output validation, context retrieval, and modular tool execution.",
+          impact: "Accelerated root-cause diagnosis, standardized technical documentation, and established a reusable multi-agent architecture for enterprise workflows.",
+          technologies: ["Python", "LLMs & AI Agents", "Node.js", "REST APIs", "Prompt Engineering"]
+        },
+        {
+          id: "fime-retention-analytics",
+          category: "data",
+          categoryLabel: "Data Science & Backend",
+          company: "FIME - UANL",
+          period: "2022 - 2026",
+          metricBadge: "3 Adopted Programs",
+          title: "Student Persistence & Predictive Analytics Software Suite",
+          summary: "Software tools and statistical pipelines in Python and R built to evaluate academic cohorts and automate institutional reporting.",
+          imageAlt: "Student persistence data pipeline visualization in Python and R",
+          problem: "Academic departments lacked automated software tools to process historical student datasets and identify early retention risk factors.",
+          solution: "Engineered statistical processing engines and analytical tools in Python, R, and SQL that clean, model, and transform academic metrics into automated executive reports.",
+          impact: "3 developed software programs were formally adopted into official curriculum coursework at FIME-UANL.",
+          technologies: ["Python", "R", "SQL", "Statistical Modeling", "Data Pipelines"]
         }
       ]
     },
@@ -476,8 +676,39 @@ export const translations = {
           ariaLabel: "GitHub - XionNobody14"
         }
       ],
-      cardTitle: "Send a Message",
-      cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Technical Systems roles.",
+      cardTitle: "Quick Actions",
+      cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Backend Engineering.",
+      form: {
+        title: "Send a Direct Message",
+        subtitle: "Real-time interactive validation. Required fields are verified upon completing each entry.",
+        nameLabel: "Full Name or Company",
+        nameHint: "Minimum 2 characters (e.g., Jane Doe - Tech Recruiter)",
+        namePlaceholder: "Your name or company",
+        nameError: "Please enter your name (at least 2 characters).",
+        emailLabel: "Contact Email Address",
+        emailHint: "Format: name@domain.com",
+        emailPlaceholder: "you@company.com",
+        emailError: "Please enter a valid email address.",
+        subjectLabel: "Reason for Contact",
+        subjectHint: "Select the primary focus of your message",
+        subjectOptions: [
+          { value: "Backend / Software Engineer Role", label: "Job Opportunity — Backend / Software Dev" },
+          { value: "Process Automation & AI Agents", label: "Process Automation & AI Agents" },
+          { value: "Systems & Data Integration", label: "Systems & Data Integration (SQL / APIs)" },
+          { value: "General Technical Collaboration", label: "Technical Collaboration / Consulting" }
+        ],
+        messageLabel: "Message Details",
+        messageHint: "Minimum 15 characters describing the role, project, or technical inquiry",
+        messagePlaceholder: "Hi Andrés, I reviewed your case studies and would love to discuss an engineering opportunity...",
+        messageError: "Please write a message with at least 15 characters.",
+        submitIdle: "Send Message",
+        submitLoading: "Validating and preparing message...",
+        submitSuccessTitle: "Message validated and ready!",
+        submitSuccessText: "Your message has been structured. Your email client was opened to confirm direct dispatch to andreschavezv2003@gmail.com.",
+        submitErrorTitle: "Please review highlighted fields",
+        submitErrorText: "Please fix the fields marked with an alert before continuing.",
+        sendAnother: "Send another message"
+      },
       modal: {
         title: "Download Resume",
         subtitle: "Select document language:",
@@ -490,7 +721,7 @@ export const translations = {
     },
     footer: {
       rights: "All rights reserved.",
-      developedWith: "Designed & engineered with React, Vite, and CSS Modules.",
+      developedWith: "Designed & engineered with React, Vite, and Soft Japandi aesthetics.",
       backToTop: "Back to top"
     }
   }

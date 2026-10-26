@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Andrés Chávez - Software Engineer Emblem">
+  <defs>
+    <linearGradient id="japandiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFECE6" />
+      <stop offset="100%" stop-color="#E5E0D8" />
+    </linearGradient>
+    <linearGradient id="matchaAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8F9E8B" />
+      <stop offset="100%" stop-color="#758A72" />
+    </linearGradient>
+    <linearGradient id="woodAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C2A68C" />
+      <stop offset="100%" stop-color="#8C7355" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="28" fill="url(#japandiBg)" stroke="#C2A68C" stroke-width="2" />
+  <circle cx="60" cy="60" r="46" fill="none" stroke="#8F9E8B" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.65" />
+  <circle cx="60" cy="44" r="16" fill="url(#woodAccent)" />
+  <path d="M32 94 C32 76, 88 76, 88 94" fill="url(#matchaAccent)" />
+  <circle cx="94" cy="26" r="7" fill="#8F9E8B" stroke="#F7F5F0" stroke-width="2.5" />
+  <text x="60" y="111" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#2D312E" letter-spacing="1.5">AC • DEV</text>
+</svg>

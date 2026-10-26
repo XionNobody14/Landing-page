@@ -131,6 +131,8 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               <button
                 key={link.id}
                 type="button"
+                aria-current={isActive ? 'page' : undefined}
+                aria-label={link.label}
                 className={`${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}
                 onClick={(e) => handleNavClick(e, link.id)}
               >
@@ -255,6 +257,8 @@ const Navbar = ({ activeTab, setActiveTab }) => {
               <button
                 key={link.id}
                 type="button"
+                aria-current={isActive ? 'page' : undefined}
+                aria-label={link.label}
                 className={`${styles.drawerNavLink} ${isActive ? styles.drawerNavLinkActive : ''}`}
                 onClick={(e) => handleNavClick(e, link.id)}
               >

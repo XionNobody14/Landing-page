@@ -1,0 +1,513 @@
+.projectsSection {
+  padding: 28px 0 80px 0;
+  position: relative;
+}
+
+/* Filter Bar */
+.filterScrollWrapper {
+  width: 100%;
+  margin-bottom: 36px;
+  display: flex;
+  justify-content: center;
+}
+
+.filterBar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  padding: 6px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  max-width: 100%;
+}
+
+.filterBtn {
+  padding: 9px 18px;
+  min-height: 40px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filterBtn:hover {
+  color: var(--color-text-main);
+  background: var(--color-surface-soft);
+  border-color: var(--color-border);
+}
+
+.filterActive {
+  background: var(--color-wood-dark) !important;
+  color: #FFFFFF !important;
+  border-color: var(--color-wood-dark) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 10px rgba(140, 115, 85, 0.25);
+}
+
+/* Grid & Cards */
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.projectCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  position: relative;
+}
+
+.projectCard:hover {
+  transform: translateY(-4px) scale(1.006);
+  border-color: var(--color-wood);
+  box-shadow: var(--shadow-hover), 0 0 0 1px rgba(194, 166, 140, 0.25);
+}
+
+.cardTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.metaGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.categoryTag {
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-wood-dark);
+  background: rgba(194, 166, 140, 0.18);
+  border: 1px solid var(--color-wood);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.companyMeta {
+  font-size: 0.785rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.metricPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(143, 158, 139, 0.16);
+  border: 1px solid var(--color-accent-sage);
+  color: var(--color-text-main);
+  font-size: 0.775rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.metricDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent-matcha);
+}
+
+.cardHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.archThumb {
+  width: 88px;
+  height: 54px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.projectCard:hover .archThumb {
+  transform: scale(1.04);
+  border-color: var(--color-accent-matcha);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.projectTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.35;
+}
+
+.projectSummary {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Problem / Solution / Impact Accordion */
+.psiContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease;
+  overflow: hidden;
+}
+
+.psiExpanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.psiInner {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.psiBox {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-soft);
+  transition: border-color var(--transition-fast);
+}
+
+.psiProblem {
+  border-left: 3px solid var(--color-wood);
+}
+
+.psiSolution {
+  border-left: 3px solid var(--color-wood-dark);
+}
+
+.psiImpact {
+  border-left: 3px solid var(--color-accent-matcha);
+  background: rgba(143, 158, 139, 0.12);
+}
+
+.psiLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  color: var(--color-wood-dark);
+}
+
+.psiImpact .psiLabelRow {
+  color: var(--color-text-main);
+}
+
+.psiHeading {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.psiText {
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+/* Tech Row */
+.techRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.techChip {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  transition: all var(--transition-fast);
+}
+
+.techChip:hover {
+  border-color: var(--color-accent-matcha);
+  background: rgba(143, 158, 139, 0.16);
+  transform: translateY(-1px);
+}
+
+/* Footer Actions */
+.cardFooterActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.expandToggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  font-size: 0.825rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.expandToggleBtn:hover {
+  border-color: var(--color-wood);
+  background: rgba(194, 166, 140, 0.16);
+}
+
+.chevronIcon {
+  transition: transform var(--transition-fast);
+}
+
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
+.modalTriggerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(143, 158, 139, 0.16);
+  border: 1px solid var(--color-accent-sage);
+  color: var(--color-text-main);
+  font-size: 0.825rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.modalTriggerBtn:hover {
+  background: rgba(143, 158, 139, 0.28);
+  border-color: var(--color-accent-matcha);
+  transform: translateY(-1px);
+}
+
+/* Case Study Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(27, 30, 28, 0.55);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1050;
+  animation: fadeBackdrop 0.2s ease-out;
+}
+
+.modalDialog {
+  background: var(--color-surface);
+  border: 1px solid var(--color-wood);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 30px 28px;
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.24);
+  animation: slideUpModal 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modalTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modalBadges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.modalTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.3;
+}
+
+.modalCloseBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.modalCloseBtn:hover {
+  border-color: var(--color-wood);
+  color: var(--color-text-main);
+  transform: scale(1.05);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modalDiagramRow {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+}
+
+.archThumbLarge {
+  width: 110px;
+  height: 66px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+}
+
+.modalSummaryText {
+  font-size: 0.925rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+}
+
+.modalPsiGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@keyframes fadeBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpModal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 960px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .filterScrollWrapper {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+
+  .filterScrollWrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filterBar {
+    display: inline-flex;
+    width: auto;
+    min-width: 100%;
+    justify-content: flex-start;
+  }
+
+  .filterBtn {
+    min-height: 44px;
+    padding: 9px 15px;
+    font-size: 0.825rem;
+  }
+
+  .projectCard {
+    padding: 22px 18px;
+  }
+
+  .cardHeaderRow {
+    flex-direction: column;
+  }
+
+  .modalDiagramRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardFooterActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .expandToggleBtn,
+  .modalTriggerBtn {
+    justify-content: center;
+    width: 100%;
+  }
+}

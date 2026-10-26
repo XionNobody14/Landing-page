@@ -462,3 +462,193 @@
   }
 }
 
+/* ==========================================================================
+   Interactive Contact Form (Soft Japandi + Real-time Validation)
+   ========================================================================== */
+.interactiveForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.requiredMark {
+  color: var(--color-wood-dark);
+}
+
+.fieldHint {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.fieldInput,
+.fieldSelect,
+.fieldTextarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 1rem; /* >= 16px prevents iOS auto-zoom */
+  color: var(--color-text-main);
+  background: var(--color-surface-soft);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.fieldTextarea {
+  resize: vertical;
+  min-height: 104px;
+  line-height: 1.55;
+}
+
+.fieldInput:focus,
+.fieldSelect:focus,
+.fieldTextarea:focus {
+  outline: none;
+  border-color: var(--color-wood-dark);
+  box-shadow: 0 0 0 3px rgba(140, 115, 85, 0.18);
+  background: var(--color-bg);
+}
+
+/* Native :user-invalid / :user-valid & programmatic fallback states */
+.fieldInput:user-invalid,
+.fieldTextarea:user-invalid,
+.inputInvalid {
+  border-color: #B85448 !important;
+  background-color: rgba(184, 84, 72, 0.07) !important;
+}
+
+.fieldInput:user-valid,
+.fieldTextarea:user-valid,
+.inputValid {
+  border-color: var(--color-accent-matcha);
+}
+
+.fieldErrorMsg {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 0.785rem;
+  font-weight: 600;
+  color: #B85448;
+}
+
+[data-theme='dark'] .fieldErrorMsg {
+  color: #E2877B;
+}
+
+.fieldInput:user-invalid + .fieldErrorMsg,
+.fieldTextarea:user-invalid + .fieldErrorMsg,
+.fieldErrorVisible {
+  display: inline-flex;
+}
+
+.submitFormBtn {
+  margin-top: 6px;
+  min-height: 48px;
+}
+
+.submitFormBtn:disabled {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+.spinnerIcon {
+  width: 17px;
+  height: 17px;
+  border: 2.2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spinLoader 0.75s linear infinite;
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.formAlertBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(184, 84, 72, 0.12);
+  border: 1px solid #B85448;
+  color: var(--color-text-main);
+  font-size: 0.84rem;
+}
+
+.formSuccessCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 32px 22px;
+  border-radius: var(--radius-lg);
+  background: rgba(143, 158, 139, 0.14);
+  border: 1px solid var(--color-accent-matcha);
+  margin: auto 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.successIconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-accent-matcha);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.successText {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.resetFormBtn {
+  margin-top: 8px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-wood);
+  color: var(--color-text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.resetFormBtn:hover {
+  background: var(--color-surface-soft);
+  border-color: var(--color-wood-dark);
+  transform: translateY(-1px);
+}
+
