@@ -4,6 +4,76 @@
   background: transparent;
 }
 
+.contactLayoutStack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 820px;
+  margin: 0 auto 60px auto;
+}
+
+/* Block 1: Top Direct Info Bar (Soft Japandi) */
+.infoTopBar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 18px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.topBarMetaGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.topBarMetaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-main);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.topBarDivider {
+  width: 1px;
+  height: 22px;
+  background: var(--color-border);
+}
+
+.topBarActionsGroup {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.topBarCvBtn {
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+}
+
+/* Block 2: Centered Form Card Below */
+.formContainerCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .contactGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -216,14 +286,16 @@
 .socialPill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  justify-content: center;
+  min-height: 44px;
+  gap: 7px;
+  padding: 8px 15px;
   border-radius: var(--radius-full);
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   color: var(--color-text-main);
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   transition: all var(--transition-fast);
 }
 
@@ -267,6 +339,31 @@
 @media (max-width: 900px) {
   .contactGrid {
     grid-template-columns: 1fr;
+  }
+
+  .infoTopBar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 20px;
+  }
+
+  .topBarDivider {
+    display: none;
+  }
+
+  .topBarMetaGroup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .topBarActionsGroup {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .formContainerCard {
+    padding: 26px 20px;
   }
 
   .footerContent {
@@ -524,16 +621,12 @@
   background: var(--color-bg);
 }
 
-/* Native :user-invalid / :user-valid & programmatic fallback states */
-.fieldInput:user-invalid,
-.fieldTextarea:user-invalid,
+/* Controlled programmatic validation states (prevents browser :user-invalid flash on reset) */
 .inputInvalid {
   border-color: #B85448 !important;
   background-color: rgba(184, 84, 72, 0.07) !important;
 }
 
-.fieldInput:user-valid,
-.fieldTextarea:user-valid,
 .inputValid {
   border-color: var(--color-accent-matcha);
 }
@@ -552,8 +645,6 @@
   color: #E2877B;
 }
 
-.fieldInput:user-invalid + .fieldErrorMsg,
-.fieldTextarea:user-invalid + .fieldErrorMsg,
 .fieldErrorVisible {
   display: inline-flex;
 }

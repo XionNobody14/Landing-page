@@ -24,17 +24,9 @@ const Contact = () => {
     email: false,
     message: false
   });
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const formRef = useRef(null);
-  const resetTimerRef = useRef(null);
-
-  useEffect(() => {
-    return () => {
-      if (resetTimerRef.current) {
-        clearTimeout(resetTimerRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -70,19 +62,11 @@ const Contact = () => {
     return true;
   };
 
-  // Synchronize programmatic aria-invalid with visual :user-invalid and interaction state
+  // Synchronize programmatic aria-invalid strictly with controlled touched/submitted state
   const syncAriaInvalid = (el, fieldName, currentVal, isFieldTouched) => {
     if (!el) return;
-    let nativeUserInvalid = false;
-    try {
-      if (typeof CSS !== 'undefined' && CSS.supports('selector(:user-invalid)')) {
-        nativeUserInvalid = el.matches(':user-invalid');
-      }
-    } catch {
-      nativeUserInvalid = false;
-    }
     const isCustomValid = validateField(fieldName, currentVal);
-    const shouldMarkInvalid = nativeUserInvalid || (isFieldTouched && !isCustomValid);
+    const shouldMarkInvalid = isFieldTouched && !isCustomValid;
 
     if (shouldMarkInvalid) {
       el.setAttribute('aria-invalid', 'true');
@@ -97,7 +81,7 @@ const Contact = () => {
     if (formStatus === 'error') {
       setFormStatus('idle');
     }
-    if (touched[name]) {
+    if (touched[name] || hasSubmitted) {
       syncAriaInvalid(e.target, name, value, true);
     }
   };
@@ -108,18 +92,34 @@ const Contact = () => {
     syncAriaInvalid(e.target, name, value, true);
   };
 
-  const isNameInvalid = touched.name && !validateField('name', formData.name);
-  const isEmailInvalid = touched.email && !validateField('email', formData.email);
-  const isMessageInvalid = touched.message && !validateField('message', formData.message);
+  const isNameInvalid = (touched.name || hasSubmitted) && !validateField('name', formData.name);
+  const isEmailInvalid = (touched.email || hasSubmitted) && !validateField('email', formData.email);
+  const isMessageInvalid = (touched.message || hasSubmitted) && !validateField('message', formData.message);
 
   const isNameValid = touched.name && validateField('name', formData.name);
   const isEmailValid = touched.email && validateField('email', formData.email);
   const isMessageValid = touched.message && validateField('message', formData.message);
 
+  const resetValidationAndFields = () => {
+    setFormData({ name: '', email: '', reason: 'Backend', message: '' });
+    setTouched({ name: false, email: false, message: false });
+    setHasSubmitted(false);
+    if (formRef.current) {
+      formRef.current
+        .querySelectorAll('[aria-invalid]')
+        .forEach((el) => el.removeAttribute('aria-invalid'));
+    }
+  };
+
+  const handleResetForm = () => {
+    resetValidationAndFields();
+    setFormStatus('idle');
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const allTouched = { name: true, email: true, message: true };
-    setTouched(allTouched);
+    setHasSubmitted(true);
+    setTouched({ name: true, email: true, message: true });
 
     const validName = validateField('name', formData.name);
     const validEmail = validateField('email', formData.email);
@@ -165,20 +165,8 @@ const Contact = () => {
       });
 
       if (response.ok) {
+        resetValidationAndFields();
         setFormStatus('success');
-        setFormData({ name: '', email: '', reason: 'Backend', message: '' });
-        setTouched({ name: false, email: false, message: false });
-        if (formRef.current) {
-          formRef.current
-            .querySelectorAll('[aria-invalid]')
-            .forEach((el) => el.removeAttribute('aria-invalid'));
-        }
-        if (resetTimerRef.current) {
-          clearTimeout(resetTimerRef.current);
-        }
-        resetTimerRef.current = setTimeout(() => {
-          setFormStatus('idle');
-        }, 3000);
         return;
       }
 
@@ -201,56 +189,71 @@ const Contact = () => {
           <p className="sectionSubtitle">{t.contact.sectionSubtitle}</p>
         </div>
 
-        <div className={styles.contactGrid}>
-          {/* Left Column: Direct Details & Quick Actions */}
-          <div className={styles.contactCard}>
-            <h3 className={styles.cardHeading}>{t.contact.infoTitle}</h3>
-
-            <div className={styles.infoList}>
+        <div className={styles.contactLayoutStack}>
+          {/* Block 1: Top Direct Info Bar (Soft Japandi) */}
+          <div className={styles.infoTopBar} aria-label={t.contact.infoTitle}>
+            <div className={styles.topBarMetaGroup}>
               {/* Phone */}
-              <div className={styles.infoItem}>
+              <div className={styles.topBarMetaItem}>
                 <div className={styles.infoIconBox}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
                 </div>
-                <div className={styles.infoTextGroup}>
-                  <span className={styles.infoLabel}>{t.contact.phoneLabel}</span>
-                  <a
-                    href={`tel:${t.contact.phoneValue}`}
-                    className={styles.infoValue}
-                    aria-label={`${t.contact.phoneLabel}: ${t.contact.phoneFormatted}`}
-                  >
-                    {t.contact.phoneFormatted}
-                  </a>
-                </div>
+                <a
+                  href={`tel:${t.contact.phoneValue}`}
+                  className={styles.infoValue}
+                  aria-label={`${t.contact.phoneLabel}: ${t.contact.phoneFormatted}`}
+                >
+                  {t.contact.phoneFormatted}
+                </a>
               </div>
 
+              <span className={styles.topBarDivider} aria-hidden="true" />
+
               {/* Location */}
-              <div className={styles.infoItem}>
+              <div className={styles.topBarMetaItem}>
                 <div className={styles.infoIconBox}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                 </div>
-                <div className={styles.infoTextGroup}>
-                  <span className={styles.infoLabel}>{t.contact.locationLabel}</span>
-                  <span className={styles.infoValue}>{t.contact.locationValue}</span>
-                </div>
+                <span className={styles.infoValue}>{t.contact.locationValue}</span>
               </div>
             </div>
 
-            {/* Quick Actions Row */}
-            <div className={styles.primaryActionsList} style={{ marginTop: '20px' }}>
+            <div className={styles.topBarActionsGroup}>
+              {t.contact.socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialPill}
+                  aria-label={social.ariaLabel || (social.name === 'LinkedIn' ? 'LinkedIn - Andrés Chávez' : 'GitHub - XionNobody14')}
+                >
+                  {social.name === 'LinkedIn' ? (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                  )}
+                  <span>{social.name}</span>
+                </a>
+              ))}
+
               <button
                 type="button"
-                className={`${styles.actionButton} ${styles.btnCv}`}
+                className={`${styles.actionButton} ${styles.btnCv} ${styles.topBarCvBtn}`}
                 onClick={() => setIsModalOpen(true)}
                 aria-label={t.contact.downloadCvAction}
                 title={t.contact.modal.title}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
@@ -258,75 +261,54 @@ const Contact = () => {
                 <span>{t.contact.downloadCvAction}</span>
               </button>
             </div>
-
-            {/* Social Links */}
-            <div className={styles.socialSection}>
-              <span className={styles.socialLabel}>Profiles / Perfiles:</span>
-              <div className={styles.socialLinksGroup}>
-                {t.contact.socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialPill}
-                    aria-label={social.ariaLabel || (social.name === 'LinkedIn' ? 'LinkedIn - Andrés Chávez' : 'GitHub - XionNobody14')}
-                  >
-                    {social.name === 'LinkedIn' ? (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                      </svg>
-                    ) : (
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                      </svg>
-                    )}
-                    <span>{social.name}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right Column: Interactive Real-Time Validated Contact Form */}
-          <div className={styles.actionsCard}>
+          {/* Block 2: Centered Contact Form Card Below */}
+          <div className={styles.formContainerCard}>
             <div>
               <h3 className={styles.cardHeading}>{t.contact.form.title}</h3>
             </div>
 
-            <form
-              ref={formRef}
-              action={WEB3FORMS_ENDPOINT}
-              method="POST"
-              className={styles.interactiveForm}
-              onSubmit={handleFormSubmit}
-              noValidate
-            >
-              {formStatus === 'success' && (
-                <div className={styles.formSuccessBanner} role="status" aria-live="polite">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {formStatus === 'success' ? (
+              <div className={styles.formSuccessCard} role="status" aria-live="polite">
+                <div className={styles.successIconCircle} aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <div>
-                    <strong>{t.contact.form.submitSuccessTitle} </strong>
-                    <span>{t.contact.form.submitSuccessText}</span>
-                  </div>
                 </div>
-              )}
-
-              {formStatus === 'error' && (
-                <div className={styles.formAlertBanner} role="alert">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                  </svg>
-                  <div>
-                    <strong>{t.contact.form.submitErrorTitle}: </strong>
-                    <span>{t.contact.form.submitErrorText}</span>
+                <h4 className={styles.successTitle}>{t.contact.form.submitSuccessTitle}</h4>
+                <p className={styles.successText}>{t.contact.form.submitSuccessText}</p>
+                <button
+                  type="button"
+                  className={styles.resetFormBtn}
+                  onClick={handleResetForm}
+                  aria-label={t.contact.form.sendAnother}
+                >
+                  {t.contact.form.sendAnother}
+                </button>
+              </div>
+            ) : (
+              <form
+                ref={formRef}
+                action={WEB3FORMS_ENDPOINT}
+                method="POST"
+                className={styles.interactiveForm}
+                onSubmit={handleFormSubmit}
+                noValidate
+              >
+                {formStatus === 'error' && (
+                  <div className={styles.formAlertBanner} role="alert">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="12" y1="8" x2="12" y2="12"></line>
+                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <div>
+                      <strong>{t.contact.form.submitErrorTitle}: </strong>
+                      <span>{t.contact.form.submitErrorText}</span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
                 {/* Field 1: Name (Hint placed ABOVE input per modern-web-guidance) */}
                 <div className={styles.formField}>
@@ -478,21 +460,12 @@ const Contact = () => {
                   disabled={formStatus === 'loading'}
                   aria-busy={formStatus === 'loading'}
                   aria-label={t.contact.form.submitIdle}
-                  className={`${styles.actionButton} ${styles.btnMail} ${styles.submitFormBtn} ${
-                    formStatus === 'success' ? styles.btnSuccessState : ''
-                  }`}
+                  className={`${styles.actionButton} ${styles.btnMail} ${styles.submitFormBtn}`}
                 >
                   {formStatus === 'loading' ? (
                     <>
                       <span className={styles.spinnerIcon} aria-hidden="true" />
                       <span>{t.contact.form.submitLoading}</span>
-                    </>
-                  ) : formStatus === 'success' ? (
-                    <>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      <span>{t.contact.form.submitSuccessTitle}</span>
                     </>
                   ) : (
                     <>
@@ -505,6 +478,7 @@ const Contact = () => {
                   )}
                 </button>
               </form>
+            )}
           </div>
         </div>
 

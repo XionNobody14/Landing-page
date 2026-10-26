@@ -318,8 +318,8 @@ export const translations = {
         messageError: "Por favor escribe un mensaje con al menos 15 caracteres.",
         submitIdle: "Enviar Mensaje",
         submitLoading: "Enviando mensaje...",
-        submitSuccessTitle: "¡Mensaje enviado con éxito!",
-        submitSuccessText: "Gracias por ponerte en contacto. Tu mensaje ha sido registrado correctamente.",
+        submitSuccessTitle: "¡Mensaje Enviado!",
+        submitSuccessText: "Tu información fue recibida con éxito. Me pondré en contacto contigo a la brevedad.",
         submitErrorTitle: "Revisa los campos marcados",
         submitErrorText: "Por favor corrige los campos con alerta antes de continuar.",
         sendAnother: "Enviar otro mensaje"
@@ -660,8 +660,8 @@ export const translations = {
         messageError: "Please write a message with at least 15 characters.",
         submitIdle: "Send Message",
         submitLoading: "Sending message...",
-        submitSuccessTitle: "Message sent successfully!",
-        submitSuccessText: "Thank you for reaching out. Your message has been successfully submitted.",
+        submitSuccessTitle: "Message Sent!",
+        submitSuccessText: "Your information has been received successfully. I will get back to you shortly.",
         submitErrorTitle: "Please review highlighted fields",
         submitErrorText: "Please fix the fields marked with an alert before continuing.",
         sendAnother: "Send another message"
