@@ -269,17 +269,12 @@ export const translations = {
       sectionTitle: "Contacto & Colaboración",
       sectionSubtitle: "¿Buscas un desarrollador enfocado en automatización, datos y backend? Hablemos hoy.",
       infoTitle: "Información Directa",
-      emailLabel: "Correo Electrónico",
-      emailValue: "andreschavezv2003@gmail.com",
       phoneLabel: "Teléfono / WhatsApp",
       phoneValue: "8111027436",
       phoneFormatted: "+52 (81) 1102-7436",
       locationLabel: "Ubicación",
       locationValue: "Santa Catarina, Nuevo León, México",
       downloadCvAction: "Descargar Currículum Vitae (PDF)",
-      copyEmailAction: "Copiar Correo",
-      copiedNotice: "¡Copiado al portapapeles!",
-      directMailAction: "Enviar Correo Directo",
       directCallAction: "Llamar por Teléfono",
       socialLinks: [
         {
@@ -314,7 +309,8 @@ export const translations = {
           { value: "Frontend", label: "Frontend" },
           { value: "Fullstack", label: "Fullstack" },
           { value: "Power Platform", label: "Power Platform" },
-          { value: "IA", label: "IA" }
+          { value: "IA", label: "IA" },
+          { value: "Otros", label: "Otros" }
         ],
         messageLabel: "Detalles del Mensaje",
         messageHint: "Mínimo 15 caracteres describiendo el rol, proyecto o consulta técnica",
@@ -615,17 +611,12 @@ export const translations = {
       sectionTitle: "Contact & Collaboration",
       sectionSubtitle: "Looking for an engineer focused on automation, data engineering, and backend systems? Let's connect.",
       infoTitle: "Direct Contact Information",
-      emailLabel: "Email Address",
-      emailValue: "andreschavezv2003@gmail.com",
       phoneLabel: "Phone / WhatsApp",
       phoneValue: "8111027436",
       phoneFormatted: "+52 (81) 1102-7436",
       locationLabel: "Location",
       locationValue: "Santa Catarina, Nuevo León, Mexico",
       downloadCvAction: "Download Resume (PDF)",
-      copyEmailAction: "Copy Email",
-      copiedNotice: "Copied to clipboard!",
-      directMailAction: "Send Direct Email",
       directCallAction: "Call Directly",
       socialLinks: [
         {
@@ -660,7 +651,8 @@ export const translations = {
           { value: "Frontend", label: "Frontend" },
           { value: "Fullstack", label: "Fullstack" },
           { value: "Power Platform", label: "Power Platform" },
-          { value: "IA", label: "IA" }
+          { value: "IA", label: "IA" },
+          { value: "Otros", label: "Other" }
         ],
         messageLabel: "Message Details",
         messageHint: "Minimum 15 characters describing the role, project, or technical inquiry",

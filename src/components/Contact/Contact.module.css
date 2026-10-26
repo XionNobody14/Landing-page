@@ -595,6 +595,25 @@
   font-size: 0.84rem;
 }
 
+.formSuccessBanner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(61, 107, 88, 0.14);
+  border: 1px solid var(--color-accent-matcha);
+  color: var(--color-text-main);
+  font-size: 0.84rem;
+  animation: fadeIn 0.25s ease;
+}
+
+.btnSuccessState {
+  background-color: var(--color-accent-matcha) !important;
+  border-color: var(--color-accent-matcha) !important;
+  color: #FFFFFF !important;
+}
+
 .formSuccessCard {
   display: flex;
   flex-direction: column;

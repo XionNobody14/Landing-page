@@ -3,21 +3,20 @@ import { useLanguage } from '../../context/LanguageContext';
 import styles from './Contact.module.css';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const FORM_HASH = '3f0abdcd6d92b59b8be5d8cb43de68ea';
-const FORM_ENDPOINT =
-  import.meta.env.VITE_FORM_ENDPOINT ||
-  'https://formspree.io/f/3f0abdcd6d92b59b8be5d8cb43de68ea';
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY =
+  import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
+  'fb0a24d3-0c39-4556-b877-24d5aac4e24a';
 
 const Contact = () => {
   const { t } = useLanguage();
-  const [copied, setCopied] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Interactive Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: 'Backend',
+    reason: 'Backend',
     message: ''
   });
   const [touched, setTouched] = useState({
@@ -27,6 +26,15 @@ const Contact = () => {
   });
   const [formStatus, setFormStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
   const formRef = useRef(null);
+  const resetTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current) {
+        clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -137,18 +145,17 @@ const Contact = () => {
 
     setFormStatus('loading');
 
-    const selectedSubject = formData.subject || 'Backend';
     const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
       name: formData.name.trim(),
       email: formData.email.trim(),
-      subject: selectedSubject,
-      _subject: `[Portafolio - ${selectedSubject}] Mensaje de ${formData.name.trim()}`,
-      motivo: selectedSubject,
-      message: formData.message.trim()
+      subject: `Nuevo contacto: ${formData.reason}`,
+      message: formData.message.trim(),
+      from_name: 'Portfolio Web - Contacto'
     };
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -159,21 +166,19 @@ const Contact = () => {
 
       if (response.ok) {
         setFormStatus('success');
-        return;
-      }
-
-      // Fallback using the obfuscated hash endpoint if primary returns non-2xx
-      const fallbackResponse = await fetch(`https://formsubmit.co/ajax/${FORM_HASH}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (fallbackResponse.ok) {
-        setFormStatus('success');
+        setFormData({ name: '', email: '', reason: 'Backend', message: '' });
+        setTouched({ name: false, email: false, message: false });
+        if (formRef.current) {
+          formRef.current
+            .querySelectorAll('[aria-invalid]')
+            .forEach((el) => el.removeAttribute('aria-invalid'));
+        }
+        if (resetTimerRef.current) {
+          clearTimeout(resetTimerRef.current);
+        }
+        resetTimerRef.current = setTimeout(() => {
+          setFormStatus('idle');
+        }, 3000);
         return;
       }
 
@@ -181,19 +186,6 @@ const Contact = () => {
     } catch {
       setFormStatus('error');
     }
-  };
-
-  const handleResetForm = () => {
-    setFormData({ name: '', email: '', subject: 'Backend', message: '' });
-    setTouched({ name: false, email: false, message: false });
-    setFormStatus('idle');
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(t.contact.emailValue).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 3000);
-    });
   };
 
   const handleScrollToTop = () => {
@@ -215,26 +207,6 @@ const Contact = () => {
             <h3 className={styles.cardHeading}>{t.contact.infoTitle}</h3>
 
             <div className={styles.infoList}>
-              {/* Email */}
-              <div className={styles.infoItem}>
-                <div className={styles.infoIconBox}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </div>
-                <div className={styles.infoTextGroup}>
-                  <span className={styles.infoLabel}>{t.contact.emailLabel}</span>
-                  <a
-                    href={`mailto:${t.contact.emailValue}`}
-                    className={styles.infoValue}
-                    aria-label={`${t.contact.emailLabel}: ${t.contact.emailValue}`}
-                  >
-                    {t.contact.emailValue}
-                  </a>
-                </div>
-              </div>
-
               {/* Phone */}
               <div className={styles.infoItem}>
                 <div className={styles.infoIconBox}>
@@ -271,28 +243,6 @@ const Contact = () => {
 
             {/* Quick Actions Row */}
             <div className={styles.primaryActionsList} style={{ marginTop: '20px' }}>
-              <button
-                type="button"
-                className={`${styles.actionButton} ${styles.btnCopy}`}
-                onClick={handleCopyEmail}
-                aria-label={t.contact.copyEmailAction}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-                <span>{t.contact.copyEmailAction}</span>
-              </button>
-
-              {copied && (
-                <div className={styles.toastNotice} role="status" aria-live="polite">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>{t.contact.copiedNotice}</span>
-                </div>
-              )}
-
               <button
                 type="button"
                 className={`${styles.actionButton} ${styles.btnCv}`}
@@ -344,46 +294,39 @@ const Contact = () => {
               <h3 className={styles.cardHeading}>{t.contact.form.title}</h3>
             </div>
 
-            {formStatus === 'success' ? (
-              <div className={styles.formSuccessCard} role="status" aria-live="polite">
-                <div className={styles.successIconCircle} aria-hidden="true">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <form
+              ref={formRef}
+              action={WEB3FORMS_ENDPOINT}
+              method="POST"
+              className={styles.interactiveForm}
+              onSubmit={handleFormSubmit}
+              noValidate
+            >
+              {formStatus === 'success' && (
+                <div className={styles.formSuccessBanner} role="status" aria-live="polite">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                </div>
-                <h4 className={styles.successTitle}>{t.contact.form.submitSuccessTitle}</h4>
-                <p className={styles.successText}>{t.contact.form.submitSuccessText}</p>
-                <button
-                  type="button"
-                  className={styles.resetFormBtn}
-                  onClick={handleResetForm}
-                  aria-label={t.contact.form.sendAnother}
-                >
-                  {t.contact.form.sendAnother}
-                </button>
-              </div>
-            ) : (
-              <form
-                ref={formRef}
-                action={FORM_ENDPOINT}
-                method="POST"
-                className={styles.interactiveForm}
-                onSubmit={handleFormSubmit}
-                noValidate
-              >
-                {formStatus === 'error' && (
-                  <div className={styles.formAlertBanner} role="alert">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="12" y1="8" x2="12" y2="12"></line>
-                      <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                    </svg>
-                    <div>
-                      <strong>{t.contact.form.submitErrorTitle}: </strong>
-                      <span>{t.contact.form.submitErrorText}</span>
-                    </div>
+                  <div>
+                    <strong>{t.contact.form.submitSuccessTitle} </strong>
+                    <span>{t.contact.form.submitSuccessText}</span>
                   </div>
-                )}
+                </div>
+              )}
+
+              {formStatus === 'error' && (
+                <div className={styles.formAlertBanner} role="alert">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  <div>
+                    <strong>{t.contact.form.submitErrorTitle}: </strong>
+                    <span>{t.contact.form.submitErrorText}</span>
+                  </div>
+                </div>
+              )}
 
                 {/* Field 1: Name (Hint placed ABOVE input per modern-web-guidance) */}
                 <div className={styles.formField}>
@@ -476,8 +419,8 @@ const Contact = () => {
                   </span>
                   <select
                     id="contact-subject"
-                    name="subject"
-                    value={formData.subject}
+                    name="reason"
+                    value={formData.reason}
                     onChange={handleInputChange}
                     aria-describedby="contact-subject-hint"
                     className={styles.fieldSelect}
@@ -535,12 +478,21 @@ const Contact = () => {
                   disabled={formStatus === 'loading'}
                   aria-busy={formStatus === 'loading'}
                   aria-label={t.contact.form.submitIdle}
-                  className={`${styles.actionButton} ${styles.btnMail} ${styles.submitFormBtn}`}
+                  className={`${styles.actionButton} ${styles.btnMail} ${styles.submitFormBtn} ${
+                    formStatus === 'success' ? styles.btnSuccessState : ''
+                  }`}
                 >
                   {formStatus === 'loading' ? (
                     <>
                       <span className={styles.spinnerIcon} aria-hidden="true" />
                       <span>{t.contact.form.submitLoading}</span>
+                    </>
+                  ) : formStatus === 'success' ? (
+                    <>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>{t.contact.form.submitSuccessTitle}</span>
                     </>
                   ) : (
                     <>
@@ -553,7 +505,6 @@ const Contact = () => {
                   )}
                 </button>
               </form>
-            )}
           </div>
         </div>
 
