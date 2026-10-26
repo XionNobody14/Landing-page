@@ -44,7 +44,7 @@
 
   /* Espaciado y Curvatura Soft Japandi (8px a 14px) */
   --container-max: 1140px;
-  --header-height: 76px;
+  --header-height: 64px;
   --radius-sm: 8px;
   --radius-md: 10px;
   --radius-lg: 14px;
@@ -128,10 +128,10 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-/* Contenedor principal de vistas: compensación de offset para evitar superposición con el Navbar fijo */
+/* Contenedor principal de vistas: compensación compacta bajo el Navbar fijo */
 main {
   min-height: calc(100vh - var(--header-height));
-  padding-top: calc(var(--header-height) + 2rem); /* 76px + 32px = 108px */
+  padding-top: calc(var(--header-height) + 0.5rem); /* 64px + 8px = 72px */
 }
 
 ::selection {

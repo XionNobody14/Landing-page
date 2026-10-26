@@ -13,7 +13,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    subject: 'Backend',
     message: ''
   });
   const [touched, setTouched] = useState({
@@ -104,7 +104,7 @@ const Contact = () => {
   const isEmailValid = touched.email && validateField('email', formData.email);
   const isMessageValid = touched.message && validateField('message', formData.message);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const allTouched = { name: true, email: true, message: true };
     setTouched(allTouched);
@@ -133,23 +133,45 @@ const Contact = () => {
 
     setFormStatus('loading');
 
-    setTimeout(() => {
-      setFormStatus('success');
-      const selectedSubject =
-        formData.subject ||
-        (t.contact.form.subjectOptions?.[0]?.value ?? 'Contacto desde Portafolio');
-      const mailtoSubject = encodeURIComponent(
-        `[Portafolio] ${selectedSubject} — ${formData.name.trim()}`
-      );
-      const mailtoBody = encodeURIComponent(
-        `Nombre / Empresa: ${formData.name.trim()}\nCorreo: ${formData.email.trim()}\nMotivo: ${selectedSubject}\n\nMensaje:\n${formData.message.trim()}`
-      );
-      window.location.href = `mailto:${t.contact.emailValue}?subject=${mailtoSubject}&body=${mailtoBody}`;
-    }, 650);
+    const selectedSubject = formData.subject || 'Backend';
+    const targetEmail = 'andreschavezv2003@gmail.com';
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          _subject: `[Portafolio - ${selectedSubject}] Mensaje de ${formData.name.trim()}`,
+          motivo: selectedSubject,
+          message: formData.message.trim()
+        })
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        return;
+      }
+    } catch {
+      // Fallback to mailto below if network request is blocked or offline
+    }
+
+    const mailtoSubject = encodeURIComponent(
+      `[Portafolio - ${selectedSubject}] ${formData.name.trim()}`
+    );
+    const mailtoBody = encodeURIComponent(
+      `Nombre / Empresa: ${formData.name.trim()}\nCorreo: ${formData.email.trim()}\nMotivo de Contacto: ${selectedSubject}\n\nMensaje:\n${formData.message.trim()}`
+    );
+    window.location.href = `mailto:${targetEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+    setFormStatus('success');
   };
 
   const handleResetForm = () => {
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setFormData({ name: '', email: '', subject: 'Backend', message: '' });
     setTouched({ name: false, email: false, message: false });
     setFormStatus('idle');
   };
@@ -307,7 +329,6 @@ const Contact = () => {
           <div className={styles.actionsCard}>
             <div>
               <h3 className={styles.cardHeading}>{t.contact.form.title}</h3>
-              <p className={styles.cardNote}>{t.contact.form.subtitle}</p>
             </div>
 
             {formStatus === 'success' ? (

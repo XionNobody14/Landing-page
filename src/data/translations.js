@@ -5,7 +5,6 @@ export const translations = {
       roleShort: "Software Dev",
       navLinks: [
         { id: "home", label: "Sobre Mí" },
-        { id: "projects", label: "Proyectos" },
         { id: "experience", label: "Experiencia" },
         { id: "skills", label: "Habilidades" },
         { id: "education", label: "Educación" },
@@ -78,7 +77,6 @@ export const translations = {
       filters: [
         { id: "all", label: "Todos" },
         { id: "enterprise", label: "Backend & Enterprise" },
-        { id: "automation", label: "Integraciones & APIs" },
         { id: "ai", label: "Agentes de IA & LLMs" },
         { id: "data", label: "Datos & Analítica" }
       ],
@@ -104,22 +102,6 @@ export const translations = {
           solution: "Diseñé e implementé el ciclo completo de 3 aplicaciones internas conectadas a bases de datos relacionales SQL Server, incorporando validaciones de integridad de datos, vistas por rol operativo y consultas optimizadas.",
           impact: "Adopción diaria sostenida por parte de los especialistas operativos del área, eliminación del 100% de errores por duplicidad de archivos y trazabilidad histórica centralizada lista para auditoría.",
           technologies: ["SQL Server", "Power Platform", "Python", "Data Modeling", "Git"]
-        },
-        {
-          id: "ariba-doc2sign-orchestrator",
-          category: "automation",
-          categoryLabel: "Integración & Automatización",
-          company: "Grupo Financiero Banorte",
-          period: "2023 - Presente",
-          metricBadge: "6 Flujos End-to-End",
-          title: "Orquestador Automatizado SAP Ariba & Doc2Sign vía REST APIs",
-          summary: "Arquitectura de integración automatizada para sincronizar requisiciones, flujos de aprobación y firmas electrónicas entre plataformas corporativas.",
-          imageAlt: "Esquema del flujo de integración REST API entre SAP Ariba y Doc2Sign",
-          problem: "El enrutamiento de contratos, recolección de firmas en Doc2Sign y actualización de estatus en SAP Ariba requería intervención manual repetitiva, generando cuellos de botella operativos.",
-          problemShort: "Cuellos de botella manuales entre SAP Ariba y firmas digitales.",
-          solution: "Construí 6 flujos automatizados end-to-end mediante conectores REST API, transformación estructurada de payloads JSON, manejo de reintentos y alertas automáticas de estatus.",
-          impact: "Reducción drástica en tiempos de ciclo de formalización contractual, cero errores de captura manual en 6 procesos clave y soporte continuo respaldado por ~120 tickets mensuales resueltos.",
-          technologies: ["REST APIs", "Power Automate", "SAP Ariba", "Doc2Sign", "JSON"]
         },
         {
           id: "ai-agents-workflow",
@@ -317,7 +299,6 @@ export const translations = {
       cardNote: "Listo para aportar valor inmediato en puestos de Desarrollo de Software, Automatización de Procesos o Ingeniería Backend.",
       form: {
         title: "Envíame un Mensaje Directo",
-        subtitle: "Validación interactiva en tiempo real. Los campos requeridos se verifican al completar cada entrada.",
         nameLabel: "Nombre Completo o Empresa",
         nameHint: "Mínimo 2 caracteres (ej. Ana Martínez - Tech Recruiter)",
         namePlaceholder: "Tu nombre o empresa",
@@ -327,21 +308,22 @@ export const translations = {
         emailPlaceholder: "nombre@empresa.com",
         emailError: "Ingresa una dirección de correo electrónico válida.",
         subjectLabel: "Motivo de Contacto",
-        subjectHint: "Selecciona el enfoque principal de tu mensaje",
+        subjectHint: "Selecciona el área técnica de interés",
         subjectOptions: [
-          { value: "Vacante Backend / Software Engineer", label: "Oportunidad Laboral — Backend / Software Dev" },
-          { value: "Proyecto Automatización e IA", label: "Automatización de Procesos & Agentes de IA" },
-          { value: "Integración de Sistemas y Datos", label: "Integración de Sistemas & Datos (SQL / APIs)" },
-          { value: "Colaboración General", label: "Colaboración Técnica / Consultoría" }
+          { value: "Backend", label: "Backend" },
+          { value: "Frontend", label: "Frontend" },
+          { value: "Fullstack", label: "Fullstack" },
+          { value: "Power Platform", label: "Power Platform" },
+          { value: "IA", label: "IA" }
         ],
         messageLabel: "Detalles del Mensaje",
         messageHint: "Mínimo 15 caracteres describiendo el rol, proyecto o consulta técnica",
         messagePlaceholder: "Hola Andrés, revisé tus casos de estudio y me gustaría conversar sobre una oportunidad...",
         messageError: "Por favor escribe un mensaje con al menos 15 caracteres.",
         submitIdle: "Enviar Mensaje",
-        submitLoading: "Validando y preparando envío...",
-        submitSuccessTitle: "¡Mensaje validado y listo!",
-        submitSuccessText: "Tu mensaje ha sido estructurado. Se abrió tu cliente de correo para confirmar el envío directo a andreschavezv2003@gmail.com.",
+        submitLoading: "Enviando mensaje...",
+        submitSuccessTitle: "¡Mensaje enviado con éxito!",
+        submitSuccessText: "Tu mensaje y motivo de contacto fueron enviados directamente a andreschavezv2003@gmail.com.",
         submitErrorTitle: "Revisa los campos marcados",
         submitErrorText: "Por favor corrige los campos con alerta antes de continuar.",
         sendAnother: "Enviar otro mensaje"
@@ -369,7 +351,6 @@ export const translations = {
       roleShort: "Software Dev",
       navLinks: [
         { id: "home", label: "About Me" },
-        { id: "projects", label: "Projects" },
         { id: "experience", label: "Experience" },
         { id: "skills", label: "Skills" },
         { id: "education", label: "Education" },
@@ -442,7 +423,6 @@ export const translations = {
       filters: [
         { id: "all", label: "All" },
         { id: "enterprise", label: "Backend & Enterprise" },
-        { id: "automation", label: "Integrations & APIs" },
         { id: "ai", label: "AI Agents & LLMs" },
         { id: "data", label: "Data & Analytics" }
       ],
@@ -468,21 +448,6 @@ export const translations = {
           solution: "Engineered the full lifecycle of 3 internal applications backed by relational SQL Server schemas, strict data integrity validations, role-based views, and optimized queries.",
           impact: "Sustained daily adoption by operational procurement specialists, 100% elimination of file duplication errors, and centralized audit-ready traceability.",
           technologies: ["SQL Server", "Power Platform", "Python", "Data Modeling", "Git"]
-        },
-        {
-          id: "ariba-doc2sign-orchestrator",
-          category: "automation",
-          categoryLabel: "Integration & Automation",
-          company: "Grupo Financiero Banorte",
-          period: "2023 - Present",
-          metricBadge: "6 End-to-End Workflows",
-          title: "Automated SAP Ariba & Doc2Sign Orchestrator via REST APIs",
-          summary: "Automated integration architecture synchronizing requisitions, approval chains, and digital signatures across corporate platforms.",
-          imageAlt: "REST API integration flow diagram between SAP Ariba and Doc2Sign",
-          problem: "Contract routing, signature collection in Doc2Sign, and status synchronization in SAP Ariba required repetitive manual intervention, creating operational bottlenecks.",
-          solution: "Built 6 end-to-end automated workflows utilizing REST API connectors, structured JSON payload transformations, retry resilience, and automated status notifications.",
-          impact: "Drastic reduction in contract turnaround times, zero manual data-entry errors across 6 core workflows, and ongoing reliability backed by ~120 monthly tickets resolved.",
-          technologies: ["REST APIs", "Power Automate", "SAP Ariba", "Doc2Sign", "JSON"]
         },
         {
           id: "ai-agents-workflow",
@@ -680,7 +645,6 @@ export const translations = {
       cardNote: "Ready to contribute immediate value to engineering teams in Software Development, Process Automation, or Backend Engineering.",
       form: {
         title: "Send a Direct Message",
-        subtitle: "Real-time interactive validation. Required fields are verified upon completing each entry.",
         nameLabel: "Full Name or Company",
         nameHint: "Minimum 2 characters (e.g., Jane Doe - Tech Recruiter)",
         namePlaceholder: "Your name or company",
@@ -690,21 +654,22 @@ export const translations = {
         emailPlaceholder: "you@company.com",
         emailError: "Please enter a valid email address.",
         subjectLabel: "Reason for Contact",
-        subjectHint: "Select the primary focus of your message",
+        subjectHint: "Select the technical area of interest",
         subjectOptions: [
-          { value: "Backend / Software Engineer Role", label: "Job Opportunity — Backend / Software Dev" },
-          { value: "Process Automation & AI Agents", label: "Process Automation & AI Agents" },
-          { value: "Systems & Data Integration", label: "Systems & Data Integration (SQL / APIs)" },
-          { value: "General Technical Collaboration", label: "Technical Collaboration / Consulting" }
+          { value: "Backend", label: "Backend" },
+          { value: "Frontend", label: "Frontend" },
+          { value: "Fullstack", label: "Fullstack" },
+          { value: "Power Platform", label: "Power Platform" },
+          { value: "IA", label: "IA" }
         ],
         messageLabel: "Message Details",
         messageHint: "Minimum 15 characters describing the role, project, or technical inquiry",
         messagePlaceholder: "Hi Andrés, I reviewed your case studies and would love to discuss an engineering opportunity...",
         messageError: "Please write a message with at least 15 characters.",
         submitIdle: "Send Message",
-        submitLoading: "Validating and preparing message...",
-        submitSuccessTitle: "Message validated and ready!",
-        submitSuccessText: "Your message has been structured. Your email client was opened to confirm direct dispatch to andreschavezv2003@gmail.com.",
+        submitLoading: "Sending message...",
+        submitSuccessTitle: "Message sent successfully!",
+        submitSuccessText: "Your message and contact reason were delivered directly to andreschavezv2003@gmail.com.",
         submitErrorTitle: "Please review highlighted fields",
         submitErrorText: "Please fix the fields marked with an alert before continuing.",
         sendAnother: "Send another message"

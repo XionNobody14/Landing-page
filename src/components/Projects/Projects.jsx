@@ -11,12 +11,6 @@ const getCategoryDiagramUri = (category) => {
       secondary: '%238F9E8B',
       label: 'SQL • ERP'
     },
-    automation: {
-      bg: '%23EFECE6',
-      accent: '%23758A72',
-      secondary: '%23C2A68C',
-      label: 'REST • API'
-    },
     ai: {
       bg: '%23EFECE6',
       accent: '%238F9E8B',

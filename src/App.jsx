@@ -27,7 +27,6 @@ function App() {
               <Projects />
             </>
           )}
-          {activeTab === 'projects' && <Projects />}
           {activeTab === 'experience' && <Experience />}
           {activeTab === 'skills' && <Skills />}
           {activeTab === 'education' && <Education />}
