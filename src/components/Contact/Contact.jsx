@@ -3,6 +3,10 @@ import { useLanguage } from '../../context/LanguageContext';
 import styles from './Contact.module.css';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const FORM_HASH = '3f0abdcd6d92b59b8be5d8cb43de68ea';
+const FORM_ENDPOINT =
+  import.meta.env.VITE_FORM_ENDPOINT ||
+  'https://formspree.io/f/3f0abdcd6d92b59b8be5d8cb43de68ea';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -134,40 +138,49 @@ const Contact = () => {
     setFormStatus('loading');
 
     const selectedSubject = formData.subject || 'Backend';
-    const targetEmail = 'andreschavezv2003@gmail.com';
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: selectedSubject,
+      _subject: `[Portafolio - ${selectedSubject}] Mensaje de ${formData.name.trim()}`,
+      motivo: selectedSubject,
+      message: formData.message.trim()
+    };
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+      const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
         },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          _subject: `[Portafolio - ${selectedSubject}] Mensaje de ${formData.name.trim()}`,
-          motivo: selectedSubject,
-          message: formData.message.trim()
-        })
+        body: JSON.stringify(payload)
       });
 
       if (response.ok) {
         setFormStatus('success');
         return;
       }
-    } catch {
-      // Fallback to mailto below if network request is blocked or offline
-    }
 
-    const mailtoSubject = encodeURIComponent(
-      `[Portafolio - ${selectedSubject}] ${formData.name.trim()}`
-    );
-    const mailtoBody = encodeURIComponent(
-      `Nombre / Empresa: ${formData.name.trim()}\nCorreo: ${formData.email.trim()}\nMotivo de Contacto: ${selectedSubject}\n\nMensaje:\n${formData.message.trim()}`
-    );
-    window.location.href = `mailto:${targetEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
-    setFormStatus('success');
+      // Fallback using the obfuscated hash endpoint if primary returns non-2xx
+      const fallbackResponse = await fetch(`https://formsubmit.co/ajax/${FORM_HASH}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (fallbackResponse.ok) {
+        setFormStatus('success');
+        return;
+      }
+
+      setFormStatus('error');
+    } catch {
+      setFormStatus('error');
+    }
   };
 
   const handleResetForm = () => {
@@ -352,6 +365,8 @@ const Contact = () => {
             ) : (
               <form
                 ref={formRef}
+                action={FORM_ENDPOINT}
+                method="POST"
                 className={styles.interactiveForm}
                 onSubmit={handleFormSubmit}
                 noValidate

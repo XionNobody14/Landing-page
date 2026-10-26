@@ -323,7 +323,7 @@ export const translations = {
         submitIdle: "Enviar Mensaje",
         submitLoading: "Enviando mensaje...",
         submitSuccessTitle: "¡Mensaje enviado con éxito!",
-        submitSuccessText: "Tu mensaje y motivo de contacto fueron enviados directamente a andreschavezv2003@gmail.com.",
+        submitSuccessText: "Gracias por ponerte en contacto. Tu mensaje ha sido registrado correctamente.",
         submitErrorTitle: "Revisa los campos marcados",
         submitErrorText: "Por favor corrige los campos con alerta antes de continuar.",
         sendAnother: "Enviar otro mensaje"
@@ -669,7 +669,7 @@ export const translations = {
         submitIdle: "Send Message",
         submitLoading: "Sending message...",
         submitSuccessTitle: "Message sent successfully!",
-        submitSuccessText: "Your message and contact reason were delivered directly to andreschavezv2003@gmail.com.",
+        submitSuccessText: "Thank you for reaching out. Your message has been successfully submitted.",
         submitErrorTitle: "Please review highlighted fields",
         submitErrorText: "Please fix the fields marked with an alert before continuing.",
         sendAnother: "Send another message"
