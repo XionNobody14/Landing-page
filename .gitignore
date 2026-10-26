@@ -35,3 +35,4 @@ build/
 
 # Agent tools and skills
 .agents/
+graphify-out/

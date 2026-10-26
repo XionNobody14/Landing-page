@@ -1,0 +1,88 @@
+.notFoundSection {
+  padding: 60px 0 80px 0;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFoundCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 56px 40px;
+  box-shadow: var(--shadow-card);
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.zenRing {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px dashed var(--color-wood);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  background: rgba(194, 166, 140, 0.08);
+}
+
+.codeBadge {
+  font-family: var(--font-mono, monospace);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-wood-dark);
+  letter-spacing: -0.04em;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+
+.backHomeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-wood-dark);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-wood-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(140, 115, 85, 0.2);
+}
+
+.backHomeBtn:hover {
+  background: #776145;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(140, 115, 85, 0.28);
+}
+
+@media (max-width: 600px) {
+  .notFoundCard {
+    padding: 40px 24px;
+  }
+}

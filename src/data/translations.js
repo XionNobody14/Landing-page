@@ -334,6 +334,12 @@ export const translations = {
         close: "Cerrar"
       }
     },
+    notFound: {
+      tag: "Error 404",
+      title: "Página no encontrada",
+      subtitle: "La sección o página que intentas consultar no existe o ha sido reubicada.",
+      backHome: "Volver al Inicio"
+    },
     footer: {
       rights: "Todos los derechos reservados.",
       developedWith: "Diseñado y desarrollado con React, Vite y estética Soft Japandi.",
@@ -675,6 +681,12 @@ export const translations = {
         optionEnDetail: "PDF - 1 page",
         close: "Close"
       }
+    },
+    notFound: {
+      tag: "Error 404",
+      title: "Page Not Found",
+      subtitle: "The section or page you are trying to visit does not exist or has been relocated.",
+      backHome: "Back to Home"
     },
     footer: {
       rights: "All rights reserved.",

@@ -1,0 +1,33 @@
+# Andrés Alejandro Chávez Vázquez - Software Developer Portfolio
+
+> Licensed Software Technology Engineer with over 2 years of experience in enterprise backend development, mission-critical systems integration (SAP Ariba, REST APIs, SQL Server), and business workflow automation leveraging AI agents and LLMs.
+
+## Profile Summary
+- **Full Name**: Andrés Alejandro Chávez Vázquez
+- **Role**: Software Developer | Backend, Data & AI Agents
+- **Location**: Santa Catarina, Nuevo León, Mexico
+- **Education**: B.S. in Software Technology Engineering, FIME - Universidad Autónoma de Nuevo León (UANL, 2022-2026, Graduated with Honors)
+- **Primary Focus**: Backend systems, RESTful microservices, database modeling & query optimization, autonomous AI agents, enterprise workflow automation.
+
+## Core Technical Competencies
+- **Languages & Frameworks**: Python, Java, C#, SQL, Node.js, Express.js, R, React, Vite, JavaScript (ES6+), Flutter.
+- **Enterprise Integrations & Cloud**: SAP Ariba REST APIs, Doc2Sign APIs, Power Platform (Power Automate, Power Apps), Microsoft SQL Server, MongoDB.
+- **AI & Automation**: Autonomous AI Agents, Large Language Models (LLMs), Prompt Engineering, Structured Outputs, Workflow Orchestration.
+- **DevOps & Practices**: Git, CI/CD, Agile / Scrum, High-Performance Query Tuning, Semantic Accessibility (WCAG 2.1 AA).
+
+## Highlighted Experience
+- **Grupo Financiero Banorte** (2023 - Present):
+  - Engineered 3 production procurement applications backed by relational SQL Server databases.
+  - Automated 6 end-to-end mission-critical business workflows via REST APIs with SAP Ariba and Doc2Sign.
+  - Provided ongoing technical support resolving ~120 monthly software incidents with structured root-cause documentation.
+- **FIME - UANL** (2022 - 2026):
+  - Engineered statistical data analysis pipelines in Python and R for academic persistence and cohort analytics.
+  - 3 developed software programs were formally adopted into official curriculum coursework.
+
+## Key Links & Resources
+- **Portfolio Website**: https://landing-page-xionnobody14.vercel.app/
+- **LinkedIn**: https://www.linkedin.com/in/andrés-chávez-75328a225
+- **GitHub**: https://github.com/XionNobody14
+- **Curriculum Vitae (ES)**: https://landing-page-xionnobody14.vercel.app/CV_Andres_Chavez_ES.pdf
+- **Curriculum Vitae (EN)**: https://landing-page-xionnobody14.vercel.app/CV_Andres_Chavez_EN.pdf
+- **Sitemap**: https://landing-page-xionnobody14.vercel.app/sitemap.xml

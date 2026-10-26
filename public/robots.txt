@@ -1,0 +1,28 @@
+# robots.txt - Portfolio de Andrés Alejandro Chávez Vázquez
+User-agent: *
+Allow: /
+
+# Motores de búsqueda de IA y crawlers semánticos permitidos
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Sitemap oficial
+Sitemap: https://landing-page-xionnobody14.vercel.app/sitemap.xml

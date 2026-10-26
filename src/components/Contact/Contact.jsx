@@ -185,7 +185,7 @@ const Contact = () => {
       <div className="container">
         <div className="sectionHeader">
           <span className="sectionTag">{t.contact.sectionTag}</span>
-          <h2 className="sectionTitle">{t.contact.sectionTitle}</h2>
+          <h1 className="sectionTitle">{t.contact.sectionTitle}</h1>
           <p className="sectionSubtitle">{t.contact.sectionSubtitle}</p>
         </div>
 

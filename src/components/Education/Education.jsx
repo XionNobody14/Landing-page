@@ -10,7 +10,7 @@ const Education = () => {
       <div className="container">
         <div className="sectionHeader">
           <span className="sectionTag">{t.education.sectionTag}</span>
-          <h2 className="sectionTitle">{t.education.sectionTitle}</h2>
+          <h1 className="sectionTitle">{t.education.sectionTitle}</h1>
           <p className="sectionSubtitle">{t.education.sectionSubtitle}</p>
         </div>
 

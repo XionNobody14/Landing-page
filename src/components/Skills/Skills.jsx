@@ -61,7 +61,7 @@ const Skills = () => {
       <div className="container">
         <div className="sectionHeader">
           <span className="sectionTag">{t.skills.sectionTag}</span>
-          <h2 className="sectionTitle">{t.skills.sectionTitle}</h2>
+          <h1 className="sectionTitle">{t.skills.sectionTitle}</h1>
           <p className="sectionSubtitle">{t.skills.sectionSubtitle}</p>
         </div>
 

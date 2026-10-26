@@ -11,7 +11,7 @@ const Experience = () => {
       <div className="container">
         <div className="sectionHeader">
           <span className="sectionTag">{t.experience.sectionTag}</span>
-          <h2 className="sectionTitle">{t.experience.sectionTitle}</h2>
+          <h1 className="sectionTitle">{t.experience.sectionTitle}</h1>
           <p className="sectionSubtitle">{t.experience.sectionSubtitle}</p>
         </div>
 
